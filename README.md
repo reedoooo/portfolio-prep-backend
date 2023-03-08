@@ -1,70 +1,91 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# **City-Explorer**
 
-## Available Scripts
+**Author**: Reed Vogt
 
-In the project directory, you can run:
+## Overview
 
-### `npm start`
+An app which enables users to input a location and receive back geographical information about that location .
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Getting Started
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Get started by creating a react app and downloading necessarry libraries
 
-### `npm test`
+### Architecture
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Used react, bootstrap, css, javascript, html, express, nodejs
 
-### `npm run build`
+### Change Log
+- 2-20-2022 created an app repository and set up the project by gathering resources such as keys and libraries
+- 2-21-2022 created the function for finding the location and showing results and pictures of map
+- 2-22-2022 created front end and backend end and completed all functionality but still working on CSS
+- 2-23-2022 fixed everything I had broken and organized it into a cohesive app. Added the weather and movie APIs
+- 2-24-2022
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Credit and Collaborations
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- credit to James for helping me solve the final map location image problem
+- credit to James for being my partner
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## City-Explorer lab 1
 
-### `npm run eject`
+**Name of feature:** Set up React Repository and API Keys and Initials Functions for Website
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Estimate of time needed to complete: 3h
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Start time: 11:20am
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Finish time: 7:43pm
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Actual time needed to complete: 8h 43m but when I do labs I get sidetracked and study other stuff too so that might not be fully accurate
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## City-Explorer lab 2
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**Name of feature:** Set up Server repository and Weather Finder Prototype
 
-### Code Splitting
+Estimate of time needed to complete: 3h
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Start time: 2:00pm
 
-### Analyzing the Bundle Size
+Finish time: 10:43pm
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Actual time needed to complete: 4 hours maybe to do the project but I worked on it all day. Maybe 12-14 hours just toying around with different thing or trying to fix bugs on my own while getting ahead on the project.
 
-### Making a Progressive Web App
+## City-Explorer lab 3
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+**Name of feature:** Weather Finder and Movie Finder
 
-### Advanced Configuration
+Estimate of time needed to complete: 3h
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Start time: 12:50pm
 
-### Deployment
+Finish time: 5:10pm
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Actual time needed to complete: 4h 20m
 
-### `npm run build` fails to minify
+## City-Explorer lab 4
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Name of feature:** Refactoring and Attempt to Put up the Server Again
+
+Estimate of time needed to complete: 6h
+
+Start time: 10:50am
+
+Finish time: 11:50pm
+
+Actual time needed to complete: 12h 20m
+
+## City-Explorer lab 5
+
+**Name of feature:**
+
+Start time:
+
+Finish time:
+
+Actual time needed to complete:
+
+## Images
+
+[WCRC](!<https://projects.invisionapp.com/freehand/document/waq0XAES3g)>
