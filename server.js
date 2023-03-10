@@ -19,12 +19,13 @@ const profile = require("./profile.json");
 
 // app.get("/profile", getProfile);
 // app.get("/projects", getProjects);
+
 app.get("/projects", (req, res) => {
-  res.status(200).send(projects);
+  res.send(projects);
 });
 
 app.get("/profile", (req, res) => {
-  res.status(200).send(profile);
+  res.send(profile);
 });
 
 app.get("/", (req, res) => {
