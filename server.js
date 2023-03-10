@@ -1,3 +1,5 @@
+"use strict";
+
 require("dotenv").config();
 
 const express = require("express");
@@ -7,22 +9,15 @@ app.use(cors());
 
 const PORT = process.env.PORT || 3001;
 
-// const getGithub = require("./modules/github");
-// const getProjects = require("./modules/projects");
-const projects = require("./data/projects.json")
+const projects = require("./data/projects.json");
 const profile = require("./data/profile.json");
 
-// app.get("/github", getGithub);
-// app.get("/projects", getProjects);
-
-// app.get("/profile", getProfile);
-// app.get("/projects", getProjects);
-app.get("/projects", (req, res) => {
-  res.status(200).send(projects);
+app.get("./projects.json", (req, res) => {
+  res.send(projects);
 });
 
-app.get("/profile", (req, res) => {
-  res.status(200).send(profile);
+app.get("./profile.json", (req, res) => {
+  res.send(profile);
 });
 
 app.get("/", (req, res) => {
