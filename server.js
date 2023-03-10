@@ -7,10 +7,10 @@ const cors = require("cors");
 const app = express();
 app.use(cors());
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
-const projects = require("./projects.json");
-const profile = require("./profile.json");
+const projects = require("./data/projects.json");
+const profile = require("./data/profile.json");
 
 app.get("/projects", (req, res) => {
   res.send(projects);
