@@ -12,11 +12,11 @@ const PORT = process.env.PORT || 3001;
 const projects = require("./data/projects.json");
 const profile = require("./data/profile.json");
 
-app.get("/projects", (req, res) => {
+app.get("/projects.json", (req, res) => {
   res.send(projects);
 });
 
-app.get("/profile", (req, res) => {
+app.get("/profile.json", (req, res) => {
   res.send(profile);
 });
 
