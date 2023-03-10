@@ -11,14 +11,14 @@ const PORT = process.env.PORT || 3001;
 
 // const getGithub = require("./modules/github");
 // const getProjects = require("./modules/projects");
-const getProjects = require("./Data/projects.json");
-const getProfile = require("./Data/profile.json");
+const projects = require("./Data/projects.json");
+const profile = require("./Data/profile.json");
 
 // app.get("/github", getGithub);
 // app.get("/projects", getProjects);
 
-app.get("/profile", getProfile);
-app.get("/projects", getProjects);
+// app.get("/profile", getProfile);
+// app.get("/projects", getProjects);
 
 app.get("/", (req, res) => {
   res.status(200).send("Hello World");
