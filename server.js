@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 3001;
 // const getProjects = require("./modules/projects");
 
 // app.get("/github", getGithub);
-app.get("/projects", getProjects);
+// app.get("/projects", getProjects);
 
 
 app.get("/", (req, res) => {
