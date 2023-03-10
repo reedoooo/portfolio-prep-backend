@@ -10,8 +10,10 @@ app.use(cors());
 const PORT = process.env.PORT || 3001;
 
 // const getGithub = require("./modules/github");
+const getProjects = require("./modules/projects");
 
 // app.get("/github", getGithub);
+app.get("/projects", getProjects);
 
 
 app.get("/", (req, res) => {
