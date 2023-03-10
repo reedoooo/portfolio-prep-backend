@@ -7,7 +7,7 @@ const cors = require("cors");
 const app = express();
 app.use(cors());
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 
 const projects = require("./projects.json");
 const profile = require("./profile.json");
