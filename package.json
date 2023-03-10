@@ -1,5 +1,5 @@
 {
-  "name": "city-explorer-api",
+  "name": "portfolio-prep-backend",
   "version": "1.0.0",
   "description": "An app for exploring cities",
   "main": "server.js",
