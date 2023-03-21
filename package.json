@@ -1,5 +1,5 @@
 {
-  "name": "portfolio-prep-backend",
+  "name": "city-explorer-api",
   "version": "1.0.0",
   "description": "An app for exploring cities",
   "main": "server.js",
@@ -13,8 +13,8 @@
     "url": "git+https://github.com/reedoooo/project-prep-backend.git"
   },
   "keywords": [
-    "reed",
-    "site"
+    "city",
+    "explorer"
   ],
   "author": "Reed Vogt",
   "license": "ISC",

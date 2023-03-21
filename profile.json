@@ -13,10 +13,10 @@
     "description_header": "Hi",
     "description": "I am an up and coming software Developer with a strong foundation in computer science and a passion for creating intuitive, user-friendly software. Proficient in Javascript, and experienced in developing both front-end and back-end applications. Committed to staying up-to-date with the latest trends and best practices in the field, and eager to continually improve and expand upon my skill set.",
     "section_name": {
-      "profile": "My Profile",
+      "about": "About me",
       "projects": "Projects",
-      "mystuff": "My Personal Resources",
-      "skills": "my skills",
+      "projects2": "Projects2",
+      "skills": "Skills",
       "experience": "Experience"
     }
   },
@@ -70,6 +70,76 @@
     ]
   },
   "projects": [
+    {
+      "title": "Salmon Cookies",
+      "startDate": "2022",
+      "description": "Salmon Cookies is a web application that tracks cookie sales. This project showcases the developer's proficiency in Angular, TypeScript, and C#. The application includes features such as calculating the number of cookies needed to be sold, calculating sales data, and displaying sales data in a table format. The application is also responsive, which makes it easily accessible on different devices. Overall, Salmon Cookies demonstrates the developer's ability to use different technologies to create a functional and user-friendly web application.",
+      "images": [
+        "images/portfolio/salmon-cookies/salmon-cookies-1.png",
+        "images/portfolio/salmon-cookies/salmon-cookies-2.png"
+      ],
+      "url": "https://github.com/reedoooo/salmon-cookies",
+      "technologies": [
+        {
+          "class": "devicon-angularjs-plain",
+          "name": "Angular"
+        },
+        {
+          "class": "devicon-typescript-plain",
+          "name": "TypeScript"
+        },
+        {
+          "class": "devicon-csharp-plain",
+          "name": "C#"
+        }
+      ]
+    },
+    {
+      "title": "Resume Ready",
+      "startDate": "2022",
+      "description": "Resume Ready is a personal portfolio site that allows users to edit and customize their portfolios. The application showcases the developer's skills in React and JavaScript. The site has a sleek and modern design and includes features such as creating new portfolio entries, deleting existing ones, and editing existing entries. Additionally, the application has a search feature that allows users to search for specific entries. Resume Ready demonstrates the developer's ability to use React and JavaScript to create a user-friendly and customizable web application.",
+      "images": [
+        "images/portfolio/resume-ready/project-portfolio-1.png",
+        "images/portfolio/resume-ready/project-portfolio-2.png"
+      ],
+      "url": "https://github.com/reedoooo/resume-ready",
+      "technologies": [
+        {
+          "class": "devicon-react-original",
+          "name": "React"
+        },
+        {
+          "class": "devicon-javascript-plain",
+          "name": "JavaScript"
+        }
+      ]
+    },
+    {
+      "title": "Odd Duck Products",
+      "startDate": "2022",
+      "description": "Odd Duck Products is an e-commerce website that sells unique and quirky products. The project showcases the developer's proficiency in Angular, TypeScript, and C#. The website includes features such as a shopping cart, a search bar, and a product details page. Additionally, the website has an admin portal that allows the site owner to manage products, edit product details, and view sales data. Odd Duck Products demonstrates the developer's ability to use Angular and TypeScript to create a functional and responsive e-commerce website.",
+      "images": [
+        "images/portfolio/odd-duck-product/odd-duck-product-1.png",
+        "images/portfolio/odd-duck-product/odd-duck-product-2.png"
+      ],
+      "url": "https://github.com/reedoooo/odd-duck-product",
+      "technologies": [
+        {
+          "class": "devicon-angularjs-plain",
+          "name": "Angular"
+        },
+        {
+          "class": "devicon-typescript-plain",
+          "name": "TypeScript"
+        },
+        {
+          "class": "devicon-csharp-plain",
+          "name": "C#"
+        }
+      ]
+    }
+  ],
+  "projects2": [
     {
       "title": "Salmon Cookies",
       "startDate": "2022",

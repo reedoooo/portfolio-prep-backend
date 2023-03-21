@@ -7,25 +7,16 @@ const cors = require("cors");
 const app = express();
 app.use(cors());
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
+const projects = require("./projects.json");
+const profile = require("./profile.json");
 
-const projects = require("./data/projects.json");
-const profile = require("./data/profile.json");
-
-app.get("./projects.json", (req, res) => {
+app.get("/projects", (req, res) => {
   res.send(projects);
 });
 
-app.get("./profile.json", (req, res) => {
+app.get("/profile", (req, res) => {
   res.send(profile);
 });
 
