@@ -1,7 +1,9 @@
 [
   {
-    "id": "reed",
-    "email": "readvogt@gmail.com",
-    "password": "Olivervogt1"
+    "user": {
+      "id": "reed",
+      "email": "readvogt@gmail.com",
+      "password": "Olivervogt1"
+    }
   }
 ]
