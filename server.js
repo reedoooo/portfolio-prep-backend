@@ -36,13 +36,13 @@ function generateToken(user) {
     email: user.email,
   };
 
-  const secret = "your_secret_key"; // Replace with your own secret key
+  const secret = "sasuke"; // Replace with your own secret key
   const options = { expiresIn: "1h" }; // Set the token's expiration time
 
   return jwt.sign(payload, secret, options);
 }
-console.log(user)
-console.log(user.id)
+console.log(user);
+console.log(user.id);
 
 function authenticateUser(email, password) {
   const user = users.find((user) => user.email === email);
@@ -64,7 +64,7 @@ function verifyToken(req, res, next) {
 
   try {
     const decoded = jwt.verify(token, "your_secret_key");
-    req.userId = decoded.id;
+    req.user = decoded;
     next();
   } catch (error) {
     res.status(401).json({ message: "Invalid token" });
@@ -88,7 +88,7 @@ app.get("/projects.json", (req, res) => {
   res.send(projects);
 });
 
-app.post("/api/login", (req, res) => {
+app.post("/login", (req, res) => {
   const { email, password } = req.body;
 
   const user = authenticateUser(email, password);
