@@ -1,10 +1,7 @@
-{
-    "email": {
-      "reed": "readvogt@gmail.com",
-      "emily": ["epiette@gmail.com"]
-    },
-    "password": {
-        "reed": "Olivervogt1"
-    }
-}
-    
+[
+  {
+    "id": "reed",
+    "email": "readvogt@gmail.com",
+    "password": "Olivervogt1"
+  }
+]
