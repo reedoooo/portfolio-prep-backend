@@ -22,17 +22,36 @@ app.use(function (req, res, next) {
   );
   next();
 });
+const { auth } = require('express-openid-connect');
 
-const projects = require("./projects.json");
-const profile = require("./profile.json");
+const config = {
+  authRequired: false,
+  auth0Logout: true,
+  secret: 'X11cUZbZdGR7TxzEfSWuVxfbT6TjdoEmJFJfKseEwZdB3FV3GbMOXc75Tl8alwxC',
+  baseURL: 'http://localhost:3001',
+  clientID: 'pkjVpsG2T7vvDJ8YVpQ8AGippZ8MAJsn',
+  issuerBaseURL: 'https://dev-eq6zzpz5vj8o8v17.us.auth0.com'
+};
 
-app.get("/projects.json", (req, res) => {
-  res.send(projects);
+// auth router attaches /login, /logout, and /callback routes to the baseURL
+app.use(auth(config));
+
+// req.isAuthenticated is provided from the auth router
+app.get('/', (req, res) => {
+  res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
 });
 
-app.get("/profile.json", (req, res) => {
-  res.send(profile);
-});
+
+// const projects = require("./projects.json");
+// const profile = require("./profile.json");
+
+// app.get("/projects.json", (req, res) => {
+//   res.send(projects);
+// });
+
+// app.get("/profile.json", (req, res) => {
+//   res.send(profile);
+// });
 
 app.get("/", (req, res) => {
   res.status(200).send("Hello World");
