@@ -1,19 +1,18 @@
 "use strict";
 
 require("dotenv").config();
-
 const express = require("express");
 const cors = require("cors");
 const app = express();
 const axios = require("axios");
 const mongoose = require("mongoose");
-const verifyUser = require("./auth/auth");
-
+const verifyUser = require("./auth/authorize");
 app.use(cors());
+
 app.use(express.json());
 app.use(verifyUser);
-
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3002;
+const DATABASE_URL = process.env.DATABASE_URL;
 
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "http://localhost:3001");
@@ -48,13 +47,43 @@ app.use((error, req, res, next) => {
   res.status(500).send("Server Error");
 });
 
-const DATABASE_URL = process.env.DATABASE_URL;
+app.use((request, response, next) => {
+    console.log(request.path, request.method);
+    next();
+});
 
-mongoose
-  .connect(DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => {
-    app.listen(PORT, () => console.log(`Connected to MongoDB and listening on ${PORT}`));
-  })
-  .catch((error) => {
-    console.log(error);
-  });
+mongoose.connect(DATABASE_URL)
+    .then(() => {
+        app.listen(PORT, () => console.log(`Connected to mongodb and listening on ${PORT}`));
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+// mongoose
+//   .connect(DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+//   .then(() => {
+//     app.listen(PORT, () => console.log(`Connected to MongoDB and listening on ${PORT}`));
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   });
+// const { MongoClient } = require('mongodb')
+// const url = process.env.DATABASE_URL
+// const client = new MongoClient(url)
+// const dbName = DATABASE_URL
+// async function main() {
+//   // Use connect method to connect to the server
+//   await client.connect()
+//   console.log('Connected successfully to server')
+//   const db = client.db(dbName)
+//   const collection = db.collection('human-collection')
+
+//   // the following code examples can be pasted here...
+
+//   return 'done.'
+// }
+
+// main()
+//   .then(console.log)
+//   .catch(console.error)
+//   .finally(() => client.close())
