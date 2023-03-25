@@ -15,15 +15,15 @@ const PORT = process.env.PORT || 3002;
 const DATABASE_URL = process.env.DATABASE_URL;
 
 app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:3001");
-  res.header("Access-Control-Allow-Origin", "https://reedthamosthuman.onrender.com/profile");
+  res.header("Access-Control-Allow-Origin", "*");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
   );
   next();
 });
-const { auth } = require('express-openid-connect');
+
+// Other code...
 
 const config = {
   authRequired: false,
@@ -34,14 +34,8 @@ const config = {
   issuerBaseURL: 'https://dev-eq6zzpz5vj8o8v17.us.auth0.com'
 };
 
-// auth router attaches /login, /logout, and /callback routes to the baseURL
+const { auth } = require('express-openid-connect');
 app.use(auth(config));
-
-// req.isAuthenticated is provided from the auth router
-app.get('/', (req, res) => {
-  res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
-});
-
 
 const projects = require("./projects.json");
 const profile = require("./profile.json");
@@ -72,18 +66,11 @@ app.use((request, response, next) => {
     next();
 });
 
-mongoose.connect(DATABASE_URL)
-    .then(() => {
-        app.listen(PORT, () => console.log(`Connected to mongodb and listening on ${PORT}`));
-    })
-    .catch((error) => {
-        console.log(error);
-    });
-// mongoose
-//   .connect(DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-//   .then(() => {
-//     app.listen(PORT, () => console.log(`Connected to MongoDB and listening on ${PORT}`));
-//   })
-//   .catch((error) => {
-//     console.log(error);
-//   });
+mongoose
+  .connect(DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    app.listen(PORT, () => console.log(`Connected to MongoDB and listening on ${PORT}`));
+  })
+  .catch((error) => {
+    console.log(error);
+  });
