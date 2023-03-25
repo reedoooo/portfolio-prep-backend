@@ -42,16 +42,16 @@ app.get('/', (req, res) => {
 });
 
 
-// const projects = require("./projects.json");
-// const profile = require("./profile.json");
+const projects = require("./projects.json");
+const profile = require("./profile.json");
 
-// app.get("/projects.json", (req, res) => {
-//   res.send(projects);
-// });
+app.get("/projects.json", (req, res) => {
+  res.send(projects);
+});
 
-// app.get("/profile.json", (req, res) => {
-//   res.send(profile);
-// });
+app.get("/profile.json", (req, res) => {
+  res.send(profile);
+});
 
 app.get("/", (req, res) => {
   res.status(200).send("Hello World");
