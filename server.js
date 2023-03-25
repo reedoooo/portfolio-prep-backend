@@ -14,7 +14,6 @@ app.use(express.json());
 app.use(verifyUser);
 
 const PORT = process.env.PORT || 3001;
-DATABASE_URL=process.env.DATABASE_URL;
 
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "http://localhost:3001");
