@@ -10,14 +10,14 @@ function verifyUser(request, response, next) {
         next();
     }
 
-    console.log('*************************VERIFY USER******************************')
+    console.log('*************************VERIFY USER******************************');
 
     try {
         const token = request.headers.authorization.split(' ')[1];
         console.log('**********HEADER**********');
         console.log(request.headers);
-        console.log('***********AUTH***********')
-        console.log(request.header.authorization);
+        console.log('***********AUTH***********');
+        console.log(request.headers.authorization);
         console.log('**********TOKEN*********');
         console.log(token);
         jwt.verify(token, getKey, {}, valid);
@@ -40,8 +40,12 @@ const client = jwksClient({
 // Match the JWT's key to your Auth0 Account Key so we can validate it
 function getKey(header, callback) {
     client.getSigningKey(header.kid, function (err, key) {
-        const signingKey = key.publicKey || key.rsaPublicKey;
-        callback(null, signingKey);
+        if (err) {
+            callback(err);
+        } else {
+            const signingKey = key.publicKey || key.rsaPublicKey;
+            callback(null, signingKey);
+        }
     });
 }
 
