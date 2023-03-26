@@ -11,6 +11,7 @@ app.use(cors());
 
 app.use(express.json());
 app.use(verifyUser);
+
 const PORT = process.env.PORT || 3003;
 const DATABASE_URL = process.env.DATABASE_URL;
 
@@ -65,6 +66,7 @@ app.use((request, response, next) => {
     console.log(request.path, request.method);
     next();
 });
+// app.use(express.urlencoded({ extended: true }));
 
 mongoose
   .connect(DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
