@@ -1,67 +1,105 @@
+// Load dependencies
 const dotenv = require('dotenv');
 const express = require('express');
 const logger = require('morgan');
 const path = require('path');
-const router = require('./routes/index');
+const routes = require("./routes");
 const cors = require('cors');
 const mongoose = require('mongoose');
-const profileData = require('./routes/myprofile');
-const { auth, requiresAuth } = require('express-openid-connect');
-const users = require('./routes/users')
-// const checkJwt = require('./middleware/jwt')
+// const myProfileMiddleware = require("./middleware/myProfileMiddleware");
+// const authMiddleware = require("./middleware/authMiddleWare");
+const { auth } = require('express-openid-connect');
+const ejs = require('ejs');
+
+// Configure dotenv
 dotenv.config();
 
+// Create Express app
 const app = express();
 
+// Set up view engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+// SECTION 1: Middleware Configuration
+// ===============================================================================
+
+// Cors middleware to enable Cross-origin resource sharing
 app.use(cors());
+
+// Morgan logger middleware for development logs
 app.use(logger('dev'));
+
+// Serve static files from the public directory
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Body parsing middleware for JSON requests
 app.use(express.json());
 
+// SECTION 2: Auth0 Configuration
+// ===============================================================================
+
+// Auth0 configuration
 const config = {
-  baseURL: 'http://localhost:3001',
+  authRequired: false,
+  auth0Logout: true,
+  baseURL: 'http://localhost:3000',
   clientID: 'pkjVpsG2T7vvDJ8YVpQ8AGippZ8MAJsn',
   issuerBaseURL: 'https://dev-eq6zzpz5vj8o8v17.us.auth0.com',
-  secret: 'X11cUZbZdGR7TxzEfSWuVxfbT6TjdoEmJFJfKseEwZdB3FV3GbMOXc75Tl8alwxC'
-  // audience: 'https://reedthamosthuman.onrender.com/'
+  secret: 'X11cUZbZdGR7TxzEfSWuVxfbT6TjdoEmJFJfKseEwZdB3FV3GbMOXc75Tl8alwxC',
+  routes: {
+    callback: '/callback'
+  }
 };
 
-const port = process.env.PORT || 3001;
-
-if (!config.baseURL && port && process.env.NODE_ENV !== 'production') {
-  config.baseURL = `http://localhost:${port}`;
+// Set baseURL if not set
+if (!config.baseURL && process.env.NODE_ENV !== 'production') {
+  config.baseURL = `http://localhost:${process.env.PORT}`;
 }
 
+// auth router attaches /login, /logout, and /callback routes to the baseURL
 app.use(auth(config));
 
+
+// SECTION 3: Route Handlers
+// ===============================================================================
+
+// Use routes defined in the separate routes file
+app.use(routes);
+
+// req.isAuthenticated is provided from the auth router
 app.get('/', (req, res) => {
-  res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
+  res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out')
 });
 
-app.use('/users', users)
-app.get('/profile', requiresAuth(), (req, res) => {
-  res.send(JSON.stringify(req.oidc.user));
-});
+// Protected route for getting user data
+// app.get("/users/:userId", authMiddleware, (req, res) => {
+//   const userId = req.params.userId;
 
-app.use('/myprofile', profileData);
-// app.get('/myprofile', profileData);
+//   // Fetch user data from Auth0 or your database based on userId
+//   // Example: const userData = await getUserDataFromAuth0(userId);
 
+//   if (!userData) {
+//     return res.status(404).json({ message: "User not found" });
+//   }
+
+//   res.json(userData);
+// });
+
+// Configure user object for views
 app.use(function (req, res, next) {
   res.locals.user = req.oidc.user;
   next();
 });
 
-app.use('/', router);
-
+// Handle 404 errors
 app.use(function (req, res, next) {
   const err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
+// Handle other errors
 app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', {
@@ -70,105 +108,18 @@ app.use(function (err, req, res, next) {
   });
 });
 
-const DATABASE_URL = process.env.DATABASE_URL;
+// SECTION 4: MongoDB Connection and Server Start
+// ===============================================================================
 
+// Connect to MongoDB and start server
+const DATABASE_URL = process.env.DATABASE_URL;
 mongoose
   .connect(DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
-    app.listen(port, () => {
+    app.listen(process.env.PORT, () => {
       console.log(`Connected to MongoDB and listening on ${config.baseURL}`);
-    });
-  })
-  .catch((error) => {
-    console.log(error);
-  });
-
-
-//   const dotenv = require("dotenv");
-// const express = require("express");
-// const logger = require("morgan");
-// const path = require("path");
-// const router = require("./routes/index");
-// const cors = require("cors");
-// const mongoose = require("mongoose");
-// const profileData = require("./routes/myprofile");
-// const { auth, requiresAuth } = require("express-openid-connect");
-// const users = require("./routes/users");
-// dotenv.config();
-
-// const app = express();
-
-// app.set("views", path.join(__dirname, "views"));
-// app.set("view engine", "ejs");
-
-// app.use(cors());
-// app.use(logger("dev"));
-// app.use(express.static(path.join(__dirname, "public")));
-// app.use(express.json());
-// const port = process.env.PORT || 3001;
-
-// const config = {
-//   baseURL:
-//     process.env.NODE_ENV === "production"
-//       ? "https://reedthamosthuman.onrender.com"
-//       : `http://localhost:${port}`,
-//   clientID: "pkjVpsG2T7vvDJ8YVpQ8AGippZ8MAJsn",
-//   issuerBaseURL: "https://dev-eq6zzpz5vj8o8v17.us.auth0.com",
-//   secret: "X11cUZbZdGR7TxzEfSWuVxfbT6TjdoEmJFJfKseEwZdB3FV3GbMOXc75Tl8alwxC",
-// };
-
-// if (!config.baseURL && port && process.env.NODE_ENV !== "production") {
-//   config.baseURL = [
-//     `http://localhost:${port}`,
-//     "https://reedthamosthuman.onrender.com",
-//   ];
-// }
-
-// app.use(auth(config));
-
-// app.get("/", (req, res) => {
-//   res.send(req.oidc.isAuthenticated() ? "Logged in" : "Logged out");
-// });
-
-// app.use("/users", users);
-// app.get("/profile", requiresAuth(), (req, res) => {
-//   res.send(JSON.stringify(req.oidc.user));
-// });
-
-// app.get("/myprofile", profileData);
-
-// app.use(function (req, res, next) {
-//   res.locals.user = req.oidc.user;
-//   next();
-// });
-
-// app.use("/", router);
-
-// app.use(function (req, res, next) {
-//   const err = new Error("Not Found");
-//   err.status = 404;
-//   next(err);
-// });
-
-// app.use(function (err, req, res, next) {
-//   res.status(err.status || 500);
-//   res.render("error", {
-//     message: err.message,
-//     error: process.env.NODE_ENV !== "production" ? err : {},
-//   });
-// });
-
-// const DATABASE_URL = process.env.DATABASE_URL;
-
-// mongoose
-//   .connect(DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-//   .then(() => {
-//     app.listen(port, () => {
-//       console.log(
-//         `Connected to MongoDB and listening... on ${config.baseURL}`
-//       );
-//     });
-//   })
-//   .catch((error) => {
-//     console.log(error);
-//   });
+});
+})
+.catch((error) => {
+console.log(error);
+});

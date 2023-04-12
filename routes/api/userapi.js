@@ -26,10 +26,30 @@ var request = require("request");
 var options = { method: 'POST',
   url: 'https://dev-eq6zzpz5vj8o8v17.us.auth0.com/oauth/token',
   headers: { 'content-type': 'application/json' },
-  body: '{"client_id":"LhFH6FSCiRvw9pP4ayyaTanpxwUeomac","client_secret":"-TX8qoFE3yTzbCBcaT3NPaVQb17sHv9pmONVLDlIg1Nk_hp69eqUC8WVRV1V8kn3","audience":"https://reedthamosthuman.onrender.com","grant_type":"client_credentials"}' };
+  body: '{"client_id":"lItMaSKBSOuFVY3xEbBjjys4HMyHDfwn","client_secret":"Hz1DmVhwQtrrfRXXCeLZgqU5lVytHg7Aq35s3L8mTaguwV-ejNwS1XrtlQbi9s5f","audience":"https://reedthamosthuman.onrender.com","grant_type":"client_credentials"}' };
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
 
   console.log(body);
+});
+
+var axios = require("axios").default;
+
+var options = {
+  method: 'POST',
+  url: 'https://dev-eq6zzpz5vj8o8v17.us.auth0.com/oauth/token',
+  headers: {'content-type': 'application/x-www-form-urlencoded'},
+  data: new URLSearchParams({
+    grant_type: 'client_credentials',
+    client_id: 'pkjVpsG2T7vvDJ8YVpQ8AGippZ8MAJsn',
+    client_secret: '{yourClientSecret}',
+    audience: 'https://dev-eq6zzpz5vj8o8v17.us.auth0.com/api/v2/'
+  })
+};
+
+axios.request(options).then(function (response) {
+  console.log(response.data);
+}).catch(function (error) {
+  console.error(error);
 });
