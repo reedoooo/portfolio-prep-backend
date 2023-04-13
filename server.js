@@ -1,15 +1,19 @@
 // Load dependencies
-const dotenv = require('dotenv');
-const express = require('express');
-const logger = require('morgan');
-const path = require('path');
-const routes = require("./routes");
-const cors = require('cors');
-const mongoose = require('mongoose');
-// const myProfileMiddleware = require("./middleware/myProfileMiddleware");
-// const authMiddleware = require("./middleware/authMiddleWare");
-const { auth } = require('express-openid-connect');
-const ejs = require('ejs');
+const dotenv = require("dotenv");
+const express = require("express");
+const logger = require("morgan");
+const path = require("path");
+const cors = require("cors");
+const mongoose = require("mongoose");
+// const profileData = require('./routes/api/myprofile.js');
+const ejs = require("ejs");
+
+// Import routes
+const webRoutes = require("./routes/webRoutes");
+const apiRoutes = require("./routes/apiRoutes");
+const authRoutes = require("./routes/authRoutes");
+
+// app.get("/myprofile", apiRoutes);
 
 // Configure dotenv
 dotenv.config();
@@ -17,9 +21,11 @@ dotenv.config();
 // Create Express app
 const app = express();
 
+// app.get("/api/myprofile", profileData);
+
 // Set up view engine
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
 
 // SECTION 1: Middleware Configuration
 // ===============================================================================
@@ -28,10 +34,10 @@ app.set('view engine', 'ejs');
 app.use(cors());
 
 // Morgan logger middleware for development logs
-app.use(logger('dev'));
+app.use(logger("dev"));
 
 // Serve static files from the public directory
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")));
 
 // Body parsing middleware for JSON requests
 app.use(express.json());
@@ -39,37 +45,21 @@ app.use(express.json());
 // SECTION 2: Auth0 Configuration
 // ===============================================================================
 
-// Auth0 configuration
-const config = {
-  authRequired: false,
-  auth0Logout: true,
-  baseURL: 'http://localhost:3000',
-  clientID: 'pkjVpsG2T7vvDJ8YVpQ8AGippZ8MAJsn',
-  issuerBaseURL: 'https://dev-eq6zzpz5vj8o8v17.us.auth0.com',
-  secret: 'X11cUZbZdGR7TxzEfSWuVxfbT6TjdoEmJFJfKseEwZdB3FV3GbMOXc75Tl8alwxC',
-  routes: {
-    callback: '/callback'
-  }
-};
-
-// Set baseURL if not set
-if (!config.baseURL && process.env.NODE_ENV !== 'production') {
-  config.baseURL = `http://localhost:${process.env.PORT}`;
-}
-
-// auth router attaches /login, /logout, and /callback routes to the baseURL
-app.use(auth(config));
-
-
+// Use Auth0 routes defined in authRoutes
+app.use(authRoutes);
+// app.use('/api', config);
+app.use("/api", apiRoutes);
 // SECTION 3: Route Handlers
 // ===============================================================================
 
 // Use routes defined in the separate routes file
-app.use(routes);
+app.use(webRoutes);
+
+// app.use("/api", apiRoutes);
 
 // req.isAuthenticated is provided from the auth router
-app.get('/', (req, res) => {
-  res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out')
+app.get("/", (req, res) => {
+  res.send(req.oidc.isAuthenticated() ? "Logged in" : "Logged out");
 });
 
 // Protected route for getting user data
@@ -94,7 +84,7 @@ app.use(function (req, res, next) {
 
 // Handle 404 errors
 app.use(function (req, res, next) {
-  const err = new Error('Not Found');
+  const err = new Error("Not Found");
   err.status = 404;
   next(err);
 });
@@ -102,9 +92,9 @@ app.use(function (req, res, next) {
 // Handle other errors
 app.use(function (err, req, res, next) {
   res.status(err.status || 500);
-  res.render('error', {
+  res.render("error", {
     message: err.message,
-    error: process.env.NODE_ENV !== 'production' ? err : {}
+    error: process.env.NODE_ENV !== "production" ? err : {},
   });
 });
 
@@ -117,9 +107,9 @@ mongoose
   .connect(DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     app.listen(process.env.PORT, () => {
-      console.log(`Connected to MongoDB and listening on ${config.baseURL}`);
-});
-})
-.catch((error) => {
-console.log(error);
-});
+      console.log(`Connected to MongoDB and listening on ${process.env.PORT}`);
+    });
+  })
+  .catch((error) => {
+    console.log(error);
+  });

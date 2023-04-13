@@ -2,14 +2,14 @@ const jwt = require("jsonwebtoken");
 const jwksClient = require("jwks-rsa");
 const { promisify } = require("util");
 
-// Create a JWKS client that fetches the public keys from the Auth0 server
+// Create a JWKS (JSON Web Key Set) client that fetches public keys from the Auth0 server
 const client = jwksClient({
   jwksUri: `https://${process.env.AUTH0_DOMAIN}/.well-known/jwks.json`,
 });
 
 // Function to get the public key for verifying JWT tokens
 function getKey(header, callback) {
-  // Retrieve the signing key for the provided "kid" from the JWKS endpoint
+  // Retrieve the signing key for the provided "kid" (key ID) from the JWKS endpoint
   client.getSigningKey(header.kid, (err, key) => {
     // Extract the public key from the signing key
     const signingKey = key.publicKey || key.rsaPublicKey;
@@ -34,9 +34,9 @@ async function authMiddleware(req, res, next) {
   try {
     // Verify the JWT token using the public key
     const decoded = await jwtVerify(token, getKey, {
-      audience: process.env.AUTH0_AUDIENCE,
+      audience: process.env.AUTH0_AUDIENCE, // Replace with the correct Auth0 audience (API Identifier)
       issuer: `https://${process.env.AUTH0_DOMAIN}/`,
-      algorithms: ["RS256"],
+      algorithms: ["RS256"], // Use the RS256 algorithm for JWT signature verification
     });
 
     // If the token is valid, add the decoded payload to the request object and call the next middleware function
