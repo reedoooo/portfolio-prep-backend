@@ -3,30 +3,23 @@ const { auth } = require('express-openid-connect');
 
 const router = express.Router();
 
+console.log('Auth0 Config:', process.env.AUTH0_CLIENT_ID, process.env.AUTH0_ISSUER_BASE_URL, process.env.AUTH0_SECRET);
+
+
 // Auth0 configuration
 const config = {
   authRequired: false,
   auth0Logout: true,
-  baseURL: 'http://localhost:3000',
-  clientID: 'pkjVpsG2T7vvDJ8YVpQ8AGippZ8MAJsn',
-  issuerBaseURL: 'https://dev-eq6zzpz5vj8o8v17.us.auth0.com',
-  secret: 'X11cUZbZdGR7TxzEfSWuVxfbT6TjdoEmJFJfKseEwZdB3FV3GbMOXc75Tl8alwxC',
+  baseURL: process.env.BASE_URL || 'http://localhost:3001',
+  clientID: process.env.AUTH0_CLIENT_ID,
+  issuerBaseURL: process.env.AUTH0_ISSUER_BASE_URL,
+  secret: process.env.AUTH0_SECRET,
   routes: {
     callback: '/callback'
   }
 };
 
-// Set baseURL if not set
-if (!config.baseURL && process.env.NODE_ENV !== 'production') {
-  config.baseURL = `http://localhost:${process.env.PORT}`;
-}
-
 // auth router attaches /login, /logout, and /callback routes to the baseURL
 router.use(auth(config));
-
-// req.isAuthenticated is provided from the auth router
-router.get('/', (req, res) => {
-  res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
-});
 
 module.exports = router;

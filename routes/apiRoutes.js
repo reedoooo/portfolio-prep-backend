@@ -1,13 +1,18 @@
+// apiRoutes.js
 const express = require("express");
-const router = require("express").Router();
-const profileData = require("./api/myprofile");
+const router = express.Router();
 
-// Profile data route (using middleware)
-router.use("/", profileData);
+const Profile = require("../models/ProfileModel"); // Import your Profile model here
 
-// If no API routes are hit, send the React app to index.html
-router.use((req, res) => {
-  res.sendFile(path.join(__dirname, "../client/build/index.html"));
+router.get("/", async (req, res) => {
+  try {
+    const profiles = await Profile.find();
+    res.json(profiles);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
 });
+
+// Add your other API routes here
 
 module.exports = router;

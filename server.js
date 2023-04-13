@@ -5,76 +5,37 @@ const logger = require("morgan");
 const path = require("path");
 const cors = require("cors");
 const mongoose = require("mongoose");
-// const profileData = require('./routes/api/myprofile.js');
 const ejs = require("ejs");
+
+// Configure dotenv
+dotenv.config();
 
 // Import routes
 const webRoutes = require("./routes/webRoutes");
 const apiRoutes = require("./routes/apiRoutes");
 const authRoutes = require("./routes/authRoutes");
 
-// app.get("/myprofile", apiRoutes);
 
-// Configure dotenv
-dotenv.config();
 
 // Create Express app
 const app = express();
-
-// app.get("/api/myprofile", profileData);
 
 // Set up view engine
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-// SECTION 1: Middleware Configuration
-// ===============================================================================
-
-// Cors middleware to enable Cross-origin resource sharing
+// Middleware Configuration
 app.use(cors());
-
-// Morgan logger middleware for development logs
 app.use(logger("dev"));
-
-// Serve static files from the public directory
 app.use(express.static(path.join(__dirname, "public")));
-
-// Body parsing middleware for JSON requests
 app.use(express.json());
 
-// SECTION 2: Auth0 Configuration
-// ===============================================================================
-
-// Use Auth0 routes defined in authRoutes
-app.use(authRoutes);
-// app.use('/api', config);
+// Auth0 Configuration
+app.use("/", authRoutes);
 app.use("/api", apiRoutes);
-// SECTION 3: Route Handlers
-// ===============================================================================
 
-// Use routes defined in the separate routes file
+// Route Handlers
 app.use(webRoutes);
-
-// app.use("/api", apiRoutes);
-
-// req.isAuthenticated is provided from the auth router
-app.get("/", (req, res) => {
-  res.send(req.oidc.isAuthenticated() ? "Logged in" : "Logged out");
-});
-
-// Protected route for getting user data
-// app.get("/users/:userId", authMiddleware, (req, res) => {
-//   const userId = req.params.userId;
-
-//   // Fetch user data from Auth0 or your database based on userId
-//   // Example: const userData = await getUserDataFromAuth0(userId);
-
-//   if (!userData) {
-//     return res.status(404).json({ message: "User not found" });
-//   }
-
-//   res.json(userData);
-// });
 
 // Configure user object for views
 app.use(function (req, res, next) {
@@ -98,10 +59,7 @@ app.use(function (err, req, res, next) {
   });
 });
 
-// SECTION 4: MongoDB Connection and Server Start
-// ===============================================================================
-
-// Connect to MongoDB and start server
+// MongoDB Connection and Server Start
 const DATABASE_URL = process.env.DATABASE_URL;
 mongoose
   .connect(DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
