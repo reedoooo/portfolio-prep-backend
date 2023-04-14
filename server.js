@@ -1,93 +1,73 @@
-"use strict";
-
-require("dotenv").config();
+// Load dependencies
+const dotenv = require("dotenv");
 const express = require("express");
+const logger = require("morgan");
+const path = require("path");
 const cors = require("cors");
-const app = express();
-const axios = require("axios");
 const mongoose = require("mongoose");
-const verifyUser = require("./auth/authorize");
+const ejs = require("ejs");
+
+// Configure dotenv
+dotenv.config();
+
+// Import routes
+const webRoutes = require("./routes/webRoutes");
+const apiRoutes = require("./routes/apiRoutes");
+const authRoutes = require("./routes/authRoutes");
+
+
+
+// Create Express app
+const app = express();
+
+// Set up view engine
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+
+// Middleware Configuration
 app.use(cors());
-
+app.use(logger("dev"));
+app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
-app.use(verifyUser);
-const PORT = process.env.PORT || 3003;
-const DATABASE_URL = process.env.DATABASE_URL;
 
+// Auth0 Configuration
+app.use("/", authRoutes);
+app.use("/api", apiRoutes);
+
+// Route Handlers
+app.use(webRoutes);
+
+// Configure user object for views
 app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
+  res.locals.user = req.oidc.user;
   next();
 });
 
-// Other code...
-
-// const config = {
-//   authRequired: false,
-//   auth0Logout: true,
-//   secret: 'X11cUZbZdGR7TxzEfSWuVxfbT6TjdoEmJFJfKseEwZdB3FV3GbMOXc75Tl8alwxC',
-//   baseURL: 'http://localhost:3001',
-//   clientID: 'pkjVpsG2T7vvDJ8YVpQ8AGippZ8MAJsn',
-//   issuerBaseURL: 'https://dev-eq6zzpz5vj8o8v17.us.auth0.com'
-// };
-
-// const { auth } = require('express-openid-connect');
-// app.use(auth(config));
-
-const projects = require("./projects.json");
-const profile = require("./profile.json");
-
-app.get("/projects.json", (req, res) => {
-  res.send(projects);
+// Handle 404 errors
+app.use(function (req, res, next) {
+  const err = new Error("Not Found");
+  err.status = 404;
+  next(err);
 });
 
-app.get("/profile.json", (req, res) => {
-  res.send(profile);
+// Handle other errors
+app.use(function (err, req, res, next) {
+  res.status(err.status || 500);
+  res.render("error", {
+    message: err.message,
+    error: process.env.NODE_ENV !== "production" ? err : {},
+  });
 });
 
-app.get("/", (req, res) => {
-  res.status(200).send("Hello World");
-});
-
-app.use("*", (req, res) => {
-  res.status(404).send("Not Found");
-});
-
-app.use((error, req, res, next) => {
-  console.error(error);
-  res.status(500).send("Server Error");
-});
-
-app.use((request, response, next) => {
-    console.log(request.path, request.method);
-    next();
-});
-
+// MongoDB Connection and Server Start
+const DATABASE_URL = process.env.DATABASE_URL;
 mongoose
   .connect(DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
-    app.listen(PORT, () => console.log(`Connected to MongoDB and listening on ${PORT}`));
+    app.listen(process.env.PORT, () => {
+      console.log(`Connected to MongoDB and listening on ${process.env.PORT}`);
+    });
   })
   .catch((error) => {
     console.log(error);
   });
-
-  // var options = {
-  //   method: 'PATCH',
-  //   url: 'https://{yourDomain}/api/v2/clients/{yourClientId}',
-  //   headers: {
-  //     'content-type': 'application/json',
-  //     authorization: 'Bearer API2_ACCESS_TOKEN',
-  //     'cache-control': 'no-cache'
-  //   },
-  //   data: {initiate_login_uri: '<login_url>'}
-  // };
-  
-  // axios.request(options).then(function (response) {
-  //   console.log(response.data);
-  // }).catch(function (error) {
-  //   console.error(error);
-  // });
