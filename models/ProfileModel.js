@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
+console.log('schema accessed')
+
 const socialSchema = new Schema({
     name: String,
     url: String,

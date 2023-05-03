@@ -1,10 +1,11 @@
 const express = require('express');
 const { auth } = require('express-openid-connect');
-
+// const verifyUser = require('../auth/authorize');
 const router = express.Router();
 
-console.log('Auth0 Config:', process.env.AUTH0_CLIENT_ID, process.env.AUTH0_ISSUER_BASE_URL, process.env.AUTH0_SECRET);
+// router.use(verifyUser);
 
+console.log('Auth0 Config:', process.env.AUTH0_CLIENT_ID, process.env.AUTH0_ISSUER_BASE_URL, process.env.AUTH0_SECRET);
 
 // Auth0 configuration
 const config = {
@@ -18,6 +19,7 @@ const config = {
     callback: '/callback'
   }
 };
+
 
 // auth router attaches /login, /logout, and /callback routes to the baseURL
 router.use(auth(config));

@@ -6,6 +6,7 @@ const path = require("path");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const ejs = require("ejs");
+const verifyUser = require('./auth/authorize');
 
 // Configure dotenv
 dotenv.config();
@@ -14,8 +15,8 @@ dotenv.config();
 const webRoutes = require("./routes/webRoutes");
 const apiRoutes = require("./routes/apiRoutes");
 const authRoutes = require("./routes/authRoutes");
-
-
+const myProfile = require("./routes/api/myprofile");
+const login = require("./routes/api/loginapi");
 
 // Create Express app
 const app = express();
@@ -23,6 +24,13 @@ const app = express();
 // Set up view engine
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
+
+app.use((request, response, next) => {
+  console.log(request.path, request.method);
+  next();
+});
+
+app.use(verifyUser);
 
 // Middleware Configuration
 app.use(cors());
@@ -33,15 +41,11 @@ app.use(express.json());
 // Auth0 Configuration
 app.use("/", authRoutes);
 app.use("/api", apiRoutes);
+app.get("/api/myprofile", myProfile);
+app.post("/api/login", login);
 
 // Route Handlers
 app.use(webRoutes);
-
-// Configure user object for views
-app.use(function (req, res, next) {
-  res.locals.user = req.oidc.user;
-  next();
-});
 
 // Handle 404 errors
 app.use(function (req, res, next) {
@@ -50,7 +54,7 @@ app.use(function (req, res, next) {
   next(err);
 });
 
-// Handle other errors
+// Handle 500 errors
 app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render("error", {
