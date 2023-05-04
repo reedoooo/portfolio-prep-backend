@@ -6,15 +6,15 @@ const path = require("path");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const ejs = require("ejs");
-const verifyUser = require('./auth/authorize');
+// const verifyUser = require('./auth/authorize');
 
 // Configure dotenv
 dotenv.config();
 
 // Import routes
 const webRoutes = require("./routes/webRoutes");
-const apiRoutes = require("./routes/apiRoutes");
-const authRoutes = require("./routes/authRoutes");
+const apiRoutes = require("./routes/api/apiRoutes");
+const authRoutes = require("./routes/auth/authRoutes");
 const myProfile = require("./routes/api/myprofile");
 const login = require("./routes/api/loginapi");
 
@@ -30,7 +30,7 @@ app.use((request, response, next) => {
   next();
 });
 
-app.use(verifyUser);
+// app.use(verifyUser);
 
 // Middleware Configuration
 app.use(cors());
@@ -41,8 +41,7 @@ app.use(express.json());
 // Auth0 Configuration
 app.use("/", authRoutes);
 app.use("/api", apiRoutes);
-app.get("/api/myprofile", myProfile);
-app.post("/api/login", login);
+// app.post("/api/login", login);
 
 // Route Handlers
 app.use(webRoutes);

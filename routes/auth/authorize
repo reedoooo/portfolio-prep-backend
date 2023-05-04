@@ -1,0 +1,50 @@
+const jwt = require("jsonwebtoken");
+const jwksClient = require("jwks-rsa");
+
+async function verifyUser(request, response, next) {
+  console.log("authorization accessed");
+
+  // Validate the Authorization header
+  const authHeader = request.headers.authorization;
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    return response.status(401).json({ message: "Unauthorized request" });
+  }
+
+  const token = authHeader.split(" ")[1];
+  console.log("**********TOKEN*********");
+  console.log(token);
+
+  try {
+    // Use async/await instead of callbacks
+    const { header, payload } = await jwt.verify(token, getKey, {});
+
+    console.log("**********HEADER**********");
+    console.log(header);
+    console.log("***********PAYLOAD***********");
+    console.log(payload);
+
+    // Save the verified user to the request object
+    request.user = payload.sub;
+
+    next();
+  } catch (error) {
+    console.error(error);
+    // Return an error response if verification fails
+    response.status(401).json({ message: "Invalid token" });
+  }
+}
+
+// Define a client to retrieve the public key from the JWKS endpoint
+const client = jwksClient({
+  jwksUri: process.env.JWKS_URI,
+});
+
+// Get the public key for a given JWT header
+function getKey(header, callback) {
+  client.getSigningKey(header.kid, function (err, key) {
+    const signingKey = key.publicKey || key.rsaPublicKey;
+    callback(null, signingKey);
+  });
+}
+
+module.exports = verifyUser;

@@ -54,7 +54,7 @@ const socialSchema = new Schema({
     },
   });
   
-  const basicInfoSchema = new Schema({
+  const ProfileInfoSchema = new Schema({
     basic_info: baseInfo,
     // skills: {
     //   icons: [iconSchema],
@@ -63,7 +63,7 @@ const socialSchema = new Schema({
     experience: [experienceSchema],
   });
 
-  module.exports = mongoose.model("human-collections", basicInfoSchema);
+  module.exports = mongoose.model("human-collections", ProfileInfoSchema);
 
 
 // const mongoose = require("mongoose");

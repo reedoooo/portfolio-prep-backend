@@ -1,14 +1,15 @@
-const MyProfile = require('../../models/ProfileInfoSchema');
-const express = require('express');
+// API ROUTES
+const express = require("express");
 const router = express.Router();
-console.log('myprofile retrieved');
+const MyProfile = require('../../models/ProfileInfoSchema');
 
-router.get("/api/myprofile", async (req, res) => {
+
+router.get("/myprofile", async (req, res) => {
   console.log('myprofile accessed');
   // console.log("**************getData************");
 
   try {
-    const myProfile = await MyProfile.findById('6421488b773d5b18c1fa0bf3');
+    const myProfile = await MyProfile.find({});
 
     res.status(200).json(myProfile); // Send myProfile directly
     console.log(myProfile[0]); // Log myProfile directly
@@ -17,5 +18,6 @@ router.get("/api/myprofile", async (req, res) => {
     console.log('try something else...');
   }
 });
+
 
 module.exports = router;
