@@ -1,14 +1,14 @@
 const MyProfile = require('../../models/ProfileInfoSchema');
 const express = require('express');
 const router = express.Router();
-console.log('myprofile retrieved');
+console.log('myProfileRoutes retrieved');
 
 router.get("/myProfileRoutes", async (req, res) => {
-  console.log('myprofile accessed');
+  console.log('myProfileRoutes accessed');
   // console.log("**************getData************");
 
   try {
-    const myProfile = await MyProfile.findById('6421488b773d5b18c1fa0bf3');
+    const myProfile = await MyProfile.find({});
 
     res.status(200).json(myProfile); // Send myProfile directly
     console.log(myProfile[0]); // Log myProfile directly
