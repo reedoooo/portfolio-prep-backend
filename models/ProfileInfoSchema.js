@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
+console.log('profile info schema accessed')
+
 const socialSchema = new Schema({
     name: String,
     url: String,
@@ -52,7 +54,7 @@ const socialSchema = new Schema({
     },
   });
   
-  const basicInfoSchema = new Schema({
+  const ProfileInfoSchema = new Schema({
     basic_info: baseInfo,
     // skills: {
     //   icons: [iconSchema],
@@ -61,7 +63,7 @@ const socialSchema = new Schema({
     experience: [experienceSchema],
   });
 
-  module.exports = mongoose.model("human-collections", basicInfoSchema);
+  module.exports = mongoose.model("human-collections", ProfileInfoSchema);
 
 
 // const mongoose = require("mongoose");

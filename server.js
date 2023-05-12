@@ -6,16 +6,20 @@ const path = require("path");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const ejs = require("ejs");
+const { requiresAuth } = require('express-openid-connect');
+
+
+// const verifyUser = require('./auth/authorize');
 
 // Configure dotenv
 dotenv.config();
 
 // Import routes
 const webRoutes = require("./routes/webRoutes");
-const apiRoutes = require("./routes/apiRoutes");
-const authRoutes = require("./routes/authRoutes");
-
-
+// const apiRoutes = require("./routes/api/apiRoutes");
+// const authRoutes = require("./routes/auth/authRoutes");
+const myProfileRoutes = require("./routes/api/myProfileRoutes"); // Add this line
+const myTabRoutes = require("./routes/api/myTabRoutes"); // Add this line
 
 // Create Express app
 const app = express();
@@ -24,23 +28,62 @@ const app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
+app.use((request, response, next) => {
+  console.log(request.path, request.method);
+  next();
+});
+
+// app.use(verifyUser);
+
 // Middleware Configuration
 app.use(cors());
 app.use(logger("dev"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 
-// Auth0 Configuration
-app.use("/", authRoutes);
-app.use("/api", apiRoutes);
-
 // Route Handlers
+// app.use("/", authRoutes);
+// app.use("/api", apiRoutes);
+app.use("/api", myProfileRoutes); // Add this line
+app.use("/api", myTabRoutes); // Add this line
+
+// app.use("/tabData", savedTabsRoutes); // Add this line
+
+// Serve tabData.json file
+// app.get("/tabData", (req, res) => {
+//   console.log("tabData accessed")
+//   const tabData = require("./tabData.json"); // Import the tabData.json file
+//   res.json(tabData);
+// });
+
+app.get('/profile', requiresAuth(), (req, res) => {
+  res.send(JSON.stringify(req.oidc.user));
+});
+
 app.use(webRoutes);
 
-// Configure user object for views
-app.use(function (req, res, next) {
-  res.locals.user = req.oidc.user;
-  next();
+app.post("/oauth/token", async (req, res) => {
+  try {
+    const options = {
+      method: "POST",
+      url: "https://dev-eq6zzpz5vj8o8v17.us.auth0.com/oauth/token",
+      headers: { "content-type": "application/json" },
+      data: {
+        authRequired: false,
+        auth0Logout: true,
+        // Replace the values with your actual client_id, client_secret, etc.
+        "client_id": "pkjVpsG2T7vvDJ8YVpQ8AGippZ8MAJsn",
+        "client_secret": "X11cUZbZdGR7TxzEfSWuVxfbT6TjdoEmJFJfKseEwZdB3FV3GbMOXc75Tl8alwxC",
+        "audience": "https://dev-eq6zzpz5vj8o8v17.us.auth0.com/api/v2/",
+        "grant_type": "client_credentials",
+      },
+    };
+
+    const response = await axios(options);
+    res.send(response.data);
+  } catch (error) {
+    res.status(500).send({ message: "Error fetching token", error });
+  }
 });
 
 // Handle 404 errors
@@ -50,7 +93,7 @@ app.use(function (req, res, next) {
   next(err);
 });
 
-// Handle other errors
+// Handle 500 errors
 app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render("error", {
