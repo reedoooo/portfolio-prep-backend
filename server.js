@@ -16,9 +16,10 @@ dotenv.config();
 
 // Import routes
 const webRoutes = require("./routes/webRoutes");
-const apiRoutes = require("./routes/api/apiRoutes");
+// const apiRoutes = require("./routes/api/apiRoutes");
 // const authRoutes = require("./routes/auth/authRoutes");
 const myProfileRoutes = require("./routes/api/myProfileRoutes"); // Add this line
+const myTabRoutes = require("./routes/api/myTabRoutes"); // Add this line
 
 // Create Express app
 const app = express();
@@ -42,8 +43,18 @@ app.use(express.json());
 
 // Route Handlers
 // app.use("/", authRoutes);
-app.use("/api", apiRoutes);
+// app.use("/api", apiRoutes);
 app.use("/api", myProfileRoutes); // Add this line
+app.use("/api", myTabRoutes); // Add this line
+
+// app.use("/tabData", savedTabsRoutes); // Add this line
+
+// Serve tabData.json file
+// app.get("/tabData", (req, res) => {
+//   console.log("tabData accessed")
+//   const tabData = require("./tabData.json"); // Import the tabData.json file
+//   res.json(tabData);
+// });
 
 app.get('/profile', requiresAuth(), (req, res) => {
   res.send(JSON.stringify(req.oidc.user));
