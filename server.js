@@ -59,6 +59,7 @@ app.use("/api", myTabRoutes); // Add this line
 app.get('/profile', requiresAuth(), (req, res) => {
   res.send(JSON.stringify(req.oidc.user));
 });
+
 app.use(webRoutes);
 
 app.post("/oauth/token", async (req, res) => {
