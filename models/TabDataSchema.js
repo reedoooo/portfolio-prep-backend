@@ -28,6 +28,7 @@ const baseInfo = new Schema({
   index: Number,
   size: String,
   name: String,
+  color: String,
   linkUrl: String,
   imgUrl: String,
 });

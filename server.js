@@ -8,20 +8,18 @@ const mongoose = require("mongoose");
 const ejs = require("ejs");
 const { requiresAuth } = require('express-openid-connect');
 
-
-// const verifyUser = require('./auth/authorize');
-
 // Configure dotenv
 dotenv.config();
 
 // Import routes
 const webRoutes = require("./routes/webRoutes");
-// const apiRoutes = require("./routes/api/apiRoutes");
-// const authRoutes = require("./routes/auth/authRoutes");
-const myProfileRoutes = require("./routes/api/myProfileRoutes"); // Add this line
-const myTabRoutes = require("./routes/api/myTabRoutes"); // Add this line
+const myProfileRoutes = require("./routes/api/myProfileRoutes"); 
+const myTabRoutes = require("./routes/api/myTabRoutes"); 
+const myTodoRoutes = require("./routes/api/myTodoRoutes");
+const myNotesRoutes = require("./routes/api/myNotesRoutes");
 
-// Create Express app
+// const authRoutes = require("./routes/auth/authRoutes");
+
 const app = express();
 
 // Set up view engine
@@ -33,7 +31,6 @@ app.use((request, response, next) => {
   next();
 });
 
-// app.use(verifyUser);
 
 // Middleware Configuration
 app.use(cors());
@@ -42,19 +39,12 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 
 // Route Handlers
+app.use("/api", myProfileRoutes);
+app.use("/api", myTabRoutes); 
+app.use("/api", myTodoRoutes); 
+app.use("/api", myNotesRoutes); 
+
 // app.use("/", authRoutes);
-// app.use("/api", apiRoutes);
-app.use("/api", myProfileRoutes); // Add this line
-app.use("/api", myTabRoutes); // Add this line
-
-// app.use("/tabData", savedTabsRoutes); // Add this line
-
-// Serve tabData.json file
-// app.get("/tabData", (req, res) => {
-//   console.log("tabData accessed")
-//   const tabData = require("./tabData.json"); // Import the tabData.json file
-//   res.json(tabData);
-// });
 
 app.get('/profile', requiresAuth(), (req, res) => {
   res.send(JSON.stringify(req.oidc.user));
