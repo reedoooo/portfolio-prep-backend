@@ -11,7 +11,7 @@ router.get("/myTabRoutes", async (req, res) => {
     const tabData = await TabData.find({});
 
     res.status(200).json(tabData);
-    console.log("Data retrieved:", tabData);
+    // console.log("Data retrieved:", tabData);
   } catch (error) {
     res.status(500).json({ message: error.message });
     console.log("Error retrieving data:", error);
@@ -22,7 +22,7 @@ router.post("/myTabRoutes", async (req, res) => {
   const { index, size, color, name, linkUrl, imgUrl } = req.body;
 
   const newTabData = new TabData({
-    tab: { index, size, name, linkUrl, imgUrl },
+    tab: { index, size, color, name, linkUrl, imgUrl },
   });
 
   try {
