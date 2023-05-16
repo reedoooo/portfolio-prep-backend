@@ -13,4 +13,4 @@ const NotesSchema = new Schema({
   tab: baseInfo,
 });
 
-module.exports = mongoose.model("savednotes", NotesSchema);
+module.exports = mongoose.model("mysavednotes", NotesSchema);
