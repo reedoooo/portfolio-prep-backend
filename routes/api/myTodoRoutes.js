@@ -11,7 +11,7 @@ router.get("/myTodoRoutes", async (req, res) => {
     const toDoData = await ToDoData.find({});
 
     res.status(200).json(toDoData);
-    console.log("Data retrieved:", toDoData);
+    // console.log("Data retrieved:", toDoData);
   } catch (error) {
     res.status(500).json({ message: error.message });
     console.log("Error retrieving data:", error);
@@ -55,7 +55,7 @@ router.put("/myTodoRoutes/:id", async (req, res) => {
       {
         "task.0.name": name,
         "task.0.description": description,
-        "task.0.status": status === "true" ? true : false,
+        "task.0.status": status === "completed" ? true : false,
         "task.0.dueDate": dueDate,
       },
       { new: true }

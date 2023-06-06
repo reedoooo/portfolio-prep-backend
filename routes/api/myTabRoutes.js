@@ -46,7 +46,7 @@ router.put("/myTabRoutes/:id", async (req, res) => {
       tab: { name, size, color, linkUrl, imgUrl },
     }, { new: true }); // <-- Here's where you add the option
     res.status(200).json(updatedTab); 
-    console.log("updatedTab:", updatedTab);
+    // console.log("updatedTab:", updatedTab);
     // Now this will be the updated document
   } catch (error) {
     console.error(error);

@@ -36,5 +36,5 @@ const TabDataSchema = new Schema({
   tab: baseInfo,
 });
 
-module.exports = mongoose.model("mysavedtabs", TabDataSchema);
+module.exports = mongoose.model("mycustomtabs", TabDataSchema);
 

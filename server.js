@@ -17,6 +17,7 @@ const myProfileRoutes = require("./routes/api/myProfileRoutes");
 const myTabRoutes = require("./routes/api/myTabRoutes"); 
 const myTodoRoutes = require("./routes/api/myTodoRoutes");
 const myNotesRoutes = require("./routes/api/myNotesRoutes");
+// const myTcgPlayerRoutes = require("./routes/api/myTcgPlayerRoutes");
 
 // const authRoutes = require("./routes/auth/authRoutes");
 
@@ -43,6 +44,7 @@ app.use("/api", myProfileRoutes);
 app.use("/api", myTabRoutes); 
 app.use("/api", myTodoRoutes); 
 app.use("/api", myNotesRoutes); 
+// app.use("/api", myTcgPlayerRoutes);
 
 // app.use("/", authRoutes);
 
