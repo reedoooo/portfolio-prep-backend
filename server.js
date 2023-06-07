@@ -6,20 +6,24 @@ const path = require("path");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const ejs = require("ejs");
-const { requiresAuth } = require('express-openid-connect');
+const { requiresAuth } = require("express-openid-connect");
+const openai = require("openai");
+const axios = require("axios"); // if you're not already requiring axios in this file
 
 // Configure dotenv
 dotenv.config();
 
+// Initialize OpenAI
+openai.apiKey = process.env.OPENAI_SECRET_KEY;
+
 // Import routes
 const webRoutes = require("./routes/webRoutes");
-const myProfileRoutes = require("./routes/api/myProfileRoutes"); 
-const myTabRoutes = require("./routes/api/myTabRoutes"); 
+const myProfileRoutes = require("./routes/api/myProfileRoutes");
+const myTabRoutes = require("./routes/api/myTabRoutes");
 const myTodoRoutes = require("./routes/api/myTodoRoutes");
 const myNotesRoutes = require("./routes/api/myNotesRoutes");
-// const myTcgPlayerRoutes = require("./routes/api/myTcgPlayerRoutes");
-
-// const authRoutes = require("./routes/auth/authRoutes");
+const myOpenAiRouter = require("./routes/api/myOpenAiRoutes");
+const mySettingsRoutes = require("./routes/api/mySettingsRoutes");
 
 const app = express();
 
@@ -32,23 +36,28 @@ app.use((request, response, next) => {
   next();
 });
 
-
 // Middleware Configuration
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:3000", // the origin of your client app
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+
 app.use(logger("dev"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 
 // Route Handlers
 app.use("/api", myProfileRoutes);
-app.use("/api", myTabRoutes); 
-app.use("/api", myTodoRoutes); 
-app.use("/api", myNotesRoutes); 
-// app.use("/api", myTcgPlayerRoutes);
+app.use("/api", myTabRoutes);
+app.use("/api", myTodoRoutes);
+app.use("/api", myNotesRoutes);
+app.use("/api", mySettingsRoutes);
+app.use("/api/openai", myOpenAiRouter); // Using '/api/openai' prefix for all OpenAI routes
 
-// app.use("/", authRoutes);
-
-app.get('/profile', requiresAuth(), (req, res) => {
+app.get("/profile", requiresAuth(), (req, res) => {
   res.send(JSON.stringify(req.oidc.user));
 });
 
@@ -63,11 +72,11 @@ app.post("/oauth/token", async (req, res) => {
       data: {
         authRequired: false,
         auth0Logout: true,
-        // Replace the values with your actual client_id, client_secret, etc.
-        "client_id": "pkjVpsG2T7vvDJ8YVpQ8AGippZ8MAJsn",
-        "client_secret": "X11cUZbZdGR7TxzEfSWuVxfbT6TjdoEmJFJfKseEwZdB3FV3GbMOXc75Tl8alwxC",
-        "audience": "https://dev-eq6zzpz5vj8o8v17.us.auth0.com/api/v2/",
-        "grant_type": "client_credentials",
+        client_id: "pkjVpsG2T7vvDJ8YVpQ8AGippZ8MAJsn",
+        client_secret:
+          "X11cUZbZdGR7TxzEfSWuVxfbT6TjdoEmJFJfKseEwZdB3FV3GbMOXc75Tl8alwxC",
+        audience: "https://dev-eq6zzpz5vj8o8v17.us.auth0.com/api/v2/",
+        grant_type: "client_credentials",
       },
     };
 
@@ -78,6 +87,31 @@ app.post("/oauth/token", async (req, res) => {
   }
 });
 
+app.post("/api/chat", async (req, res) => {
+  const { model, messages, temperature } = req.body;
+
+  try {
+    const response = await axios.post(
+      "https://api.openai.com/v1/chat/completions",
+      {
+        model,
+        messages,
+        temperature,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+        },
+      }
+    );
+
+    res.json(response.data);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
 // Handle 404 errors
 app.use(function (req, res, next) {
   const err = new Error("Not Found");
