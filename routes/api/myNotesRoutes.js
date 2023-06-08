@@ -9,7 +9,7 @@ router.get("/myNotesRoutes", async (req, res) => {
     // Fetch all notes from the database
     const myNotesRoutes = await MyNotesRoutes.find({});
 
-    console.log("myNotesRoutes working");
+    console.log("myNotesRoutes getting");
 
     res.status(200).json(myNotesRoutes);
   } catch (err) {
@@ -30,6 +30,8 @@ router.post("/myNotesRoutes", async (req, res) => {
     ],
   });
 
+  console.log("myNotesRoutes posting");
+
   try {
     await myNotesRoutes.save();
     res.status(200).json("Data added successfully");
@@ -40,7 +42,7 @@ router.post("/myNotesRoutes", async (req, res) => {
 });
 
 router.put("/myNotesRoutes/:id", async (req, res) => {
-  console.log("myNotesRoutes putted");
+  console.log("myNotesRoutes putting");
   const { id } = req.params;
   const { title, notes } = req.body;
 

@@ -5,16 +5,13 @@ const logger = require("morgan");
 const path = require("path");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const ejs = require("ejs");
 const { requiresAuth } = require("express-openid-connect");
-const openai = require("openai");
-const axios = require("axios"); // if you're not already requiring axios in this file
+const axios = require("axios");
+// require('dotenv').config();
 
 // Configure dotenv
 dotenv.config();
-
-// Initialize OpenAI
-openai.apiKey = process.env.OPENAI_SECRET_KEY;
+console.log(process.env.OPENAI_API_KEY);
 
 // Import routes
 const webRoutes = require("./routes/webRoutes");
@@ -25,29 +22,22 @@ const myNotesRoutes = require("./routes/api/myNotesRoutes");
 const myOpenAiRouter = require("./routes/api/myOpenAiRoutes");
 const mySettingsRoutes = require("./routes/api/mySettingsRoutes");
 
+// Set up Express app
 const app = express();
-
-// Set up view engine
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-app.use((request, response, next) => {
-  console.log(request.path, request.method);
-  next();
-});
-
 // Middleware Configuration
+app.use(logger("dev"));
+app.use(express.static(path.join(__dirname, "public")));
+app.use(express.json());
 app.use(
   cors({
-    origin: "http://localhost:3000", // the origin of your client app
+    origin: "http://localhost:3000",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
-
-app.use(logger("dev"));
-app.use(express.static(path.join(__dirname, "public")));
-app.use(express.json());
 
 // Route Handlers
 app.use("/api", myProfileRoutes);
@@ -55,13 +45,12 @@ app.use("/api", myTabRoutes);
 app.use("/api", myTodoRoutes);
 app.use("/api", myNotesRoutes);
 app.use("/api", mySettingsRoutes);
-app.use("/api/openai", myOpenAiRouter); // Using '/api/openai' prefix for all OpenAI routes
+app.use("/api/chat", myOpenAiRouter);
+app.use(webRoutes);
 
 app.get("/profile", requiresAuth(), (req, res) => {
   res.send(JSON.stringify(req.oidc.user));
 });
-
-app.use(webRoutes);
 
 app.post("/oauth/token", async (req, res) => {
   try {
@@ -87,39 +76,13 @@ app.post("/oauth/token", async (req, res) => {
   }
 });
 
-app.post("/api/chat", async (req, res) => {
-  const { model, messages, temperature } = req.body;
-
-  try {
-    const response = await axios.post(
-      "https://api.openai.com/v1/chat/completions",
-      {
-        model,
-        messages,
-        temperature,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
-        },
-      }
-    );
-
-    res.json(response.data);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: "Internal server error" });
-  }
-});
-// Handle 404 errors
+// Error Handlers
 app.use(function (req, res, next) {
   const err = new Error("Not Found");
   err.status = 404;
   next(err);
 });
 
-// Handle 500 errors
 app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render("error", {
@@ -129,9 +92,11 @@ app.use(function (err, req, res, next) {
 });
 
 // MongoDB Connection and Server Start
-const DATABASE_URL = process.env.DATABASE_URL;
 mongoose
-  .connect(DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(process.env.DATABASE_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => {
     app.listen(process.env.PORT, () => {
       console.log(`Connected to MongoDB and listening on ${process.env.PORT}`);
