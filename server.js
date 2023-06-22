@@ -21,6 +21,7 @@ const myTodoRoutes = require("./routes/api/myTodoRoutes");
 const myNotesRoutes = require("./routes/api/myNotesRoutes");
 const myOpenAiRouter = require("./routes/api/myOpenAiRoutes");
 const mySettingsRoutes = require("./routes/api/mySettingsRoutes");
+const myAuthRoutes = require("./routes/api/myAuthRoutes");
 
 // Set up Express app
 const app = express();
@@ -46,6 +47,7 @@ app.use("/api", myTodoRoutes);
 app.use("/api", myNotesRoutes);
 app.use("/api", mySettingsRoutes);
 app.use("/api/chat", myOpenAiRouter);
+app.use("/signin", myAuthRoutes);
 app.use(webRoutes);
 
 app.get("/profile", requiresAuth(), (req, res) => {

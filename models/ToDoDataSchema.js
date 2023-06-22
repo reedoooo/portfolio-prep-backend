@@ -17,9 +17,13 @@ const taskSchema = new Schema({
     default: false,
   },
   dueDate: {
-    type: Date,
+    type: String,
     required: true,
   },
+  difficulty: {
+    type: Number,
+    required: false,
+  }
   // createdAt: {
   //   type: Date,
   //   default: Date.now,

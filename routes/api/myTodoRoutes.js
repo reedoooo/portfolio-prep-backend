@@ -9,78 +9,84 @@ router.get("/myTodoRoutes", async (req, res) => {
 
   try {
     const toDoData = await ToDoData.find({});
-
     res.status(200).json(toDoData);
-    // console.log("Data retrieved:", toDoData);
   } catch (error) {
     res.status(500).json({ message: error.message });
-    console.log("Error retrieving data:", error);
+    console.error("Error retrieving data:", error);
   }
 });
 
 router.post("/myTodoRoutes", async (req, res) => {
-  const { name, description, dueDate, status } = req.body;
-  const createdAt = new Date();
+  console.log(req.body);
+  const { name, description, difficulty, dueDate, status } = req.body;
 
   const newTodoData = new ToDoData({
-    // tasks: [
-    // {
     task: {
-      name,
-      description,
-      status: status === "completed" ? true : false,
-      dueDate,
-      // createdAt,
+      name: name,
+      description: description,
+      difficulty: difficulty,
+      dueDate: dueDate,
+      status: status === "completed" || status === true ? true : false,
     },
-    // },
-    // ],
   });
 
   try {
-    await newTodoData.save();
-    res.status(200).json("Data added successfully");
+    const savedTask = await newTodoData.save();
+    console.log("savedTask", savedTask);
+    res.status(200).json({ message: "Task added successfully" });
   } catch (error) {
     console.error(error);
-    res.status(500).json("Server error");
+    res.status(500).json({ message: error.message });
   }
 });
 
 router.put("/myTodoRoutes/:id", async (req, res) => {
   const { id } = req.params;
-  const { name, description, status, dueDate } = req.body;
+  const { task } = req.body;
+
+  console.log("myTodoRoutes body", req.body);
+  if (!task) {
+    return res.status(400).send("Task details are required");
+  }
+
+  const { name, description, difficulty, dueDate, status } = task;
+
+  if (!name || !description || !dueDate) {
+    return res.status(400).send("All fields are required");
+  }
+
+  const newTask = {
+    difficulty,
+    description,
+    name,
+    status: status === "completed" || status === true ? true : false,
+    dueDate,
+  };
 
   try {
-    const updatedTab = await ToDoData.findByIdAndUpdate(
+    const updatedTask = await ToDoData.findByIdAndUpdate(
       id,
-      {
-        "task.0.name": name,
-        "task.0.description": description,
-        "task.0.status": status === "completed" ? true : false,
-        "task.0.dueDate": dueDate,
-      },
+      { $set: { task: newTask } },
       { new: true }
     );
 
-    res.status(200).json(updatedTab);
+    res.status(200).json(updatedTask);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Server error" });
+    res.status(500).json({ message: "Error updating task: " + error.message });
   }
 });
 
-router.delete("/myTodoRoutes/:id/:task_id", async (req, res) => {
-  const { id, task_id } = req.params;
+router.delete("/myTodoRoutes/:id", async (req, res) => {
+  const { id } = req.params;
 
   try {
-    await ToDoData.findByIdAndUpdate(id, {
-      $pull: { task: { _id: task_id } }
-    });
-    res.status(200).json(`Task with id ${task_id} deleted successfully from document with id ${id}`);
+    await ToDoData.findByIdAndDelete(id);
+    res.status(200).json(`Task with id ${id} deleted successfully`);
   } catch (error) {
     console.error(error);
     res.status(500).json("Server error");
   }
 });
-
 
 module.exports = router;
