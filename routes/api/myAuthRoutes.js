@@ -1,7 +1,7 @@
-const express = require('express');
-// const verifyUser = require('../auth/authorize.js');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const express = require('express');
+// const verifyUser = require('../auth/authorize.js');
 const router = express.Router();
 
 // In-memory user database
@@ -14,7 +14,7 @@ let users = [
 const SECRET_KEY = process.env.SECRET_KEY; // Please use a more secure key in real situations
 
 
-router.post('/signin', async (req, res) => {
+router.post('/', async (req, res) => {
   const { username, password } = req.body.auth;
   
   const user = users.find(u => u.username === username);
