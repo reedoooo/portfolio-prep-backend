@@ -7,7 +7,7 @@ const router = express.Router();
 // In-memory user database
 let users = [
   // Plain password should be hashed in real situations
-  { username: 'reedthahuman', password: bcrypt.hashSync('password', 10), capabilities: ['read', 'write'] },
+  { username: 'reedthahuman', password: bcrypt.hashSync('password', 10), capabilities: ['read', 'write', 'delete', 'create'] },
   // Add more users as needed
 ];
 
