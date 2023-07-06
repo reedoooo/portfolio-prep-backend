@@ -25,9 +25,8 @@ const { Schema } = mongoose;
 console.log('tab data schema accessed')
 
 const baseInfo = new Schema({
-  index: Number,
-  size: String,
   name: String,
+  size: String,
   color: String,
   linkUrl: String,
   imgUrl: String,
@@ -37,5 +36,5 @@ const TabDataSchema = new Schema({
   tab: baseInfo,
 });
 
-module.exports = mongoose.model("savedtabs", TabDataSchema);
+module.exports = mongoose.model("mycustomtabs", TabDataSchema);
 

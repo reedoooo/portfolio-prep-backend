@@ -9,12 +9,12 @@ const socialSchema = new Schema({
     url: String,
     class: String,
   });
-  
+// console.log('social schema created', socialSchema)
   const technologySchema = new Schema({
     class: String,
     name: String,
   });
-  
+// console.log('technology schema created', technologySchema)
   const projectSchema = new Schema({
     title: String,
     startDate: String,
@@ -23,7 +23,7 @@ const socialSchema = new Schema({
     url: String,
     technologies: [technologySchema],
   });
-  
+// console.log('project schema created', projectSchema)
   const experienceSchema = new Schema({
     company: String,
     title: String,
@@ -31,7 +31,9 @@ const socialSchema = new Schema({
     mainTech: [String],
     technologies: [String],
   });
-  
+// console.log('experience schema created', experienceSchema)
+
+
 //   const iconSchema = new Schema({
 //     name: String,
 //     class: String,
@@ -63,66 +65,4 @@ const socialSchema = new Schema({
     experience: [experienceSchema],
   });
 
-  module.exports = mongoose.model("human-collections", ProfileInfoSchema);
-
-
-// const mongoose = require("mongoose");
-
-// const basicInfoSchema = new mongoose.Schema({
-//   basic_info: {
-//     name: String,
-//     titles: [String],
-//     social: [
-//       {
-//         name: String,
-//         url: String,
-//         class: String,
-//       },
-//     ],
-//     image: String,
-//     description_header: String,
-//     description: String,
-//     section_name: {
-//       profile: String,
-//       projects: String,
-//       mystuff: String,
-//       skills: String,
-//       experience: String,
-//     },
-//   },
-//   skills: {
-//     icons: [
-//       {
-//         name: String,
-//         class: String,
-//         level: Number,
-//       },
-//     ],
-//   },
-//   projects: [
-//     {
-//       title: String,
-//       startDate: String,
-//       description: String,
-//       images: [String],
-//       url: String,
-//       technologies: [
-//         {
-//           class: String,
-//           name: String,
-//         },
-//       ],
-//     },
-//   ],
-//   experience: [
-//     {
-//       company: String,
-//       title: String,
-//       years: String,
-//       mainTech: [String],
-//       technologies: [String],
-//     },
-//   ],
-// });
-
-// module.exports = mongoose.model("human-collections", basicInfoSchema);
+  module.exports = mongoose.model("special-profiles", ProfileInfoSchema);

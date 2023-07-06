@@ -7,26 +7,6 @@ const router = express.Router();
 
 router.use(verifyUser);
 
-// console.log('Auth0 Config:', process.env.AUTH0_CLIENT_ID, process.env.AUTH0_ISSUER_BASE_URL, process.env.AUTH0_SECRET);
-
-// const config = {
-//   authRequired: false,
-//   auth0Logout: true,
-//   issuerBaseURL: 'https://dev-eq6zzpz5vj8o8v17.us.auth0.com',
-//   clientID: 'pkjVpsG2T7vvDJ8YVpQ8AGippZ8MAJsn',
-//   baseURL: 'http://localhost:3000',
-//   secret: '2e259de0b8101c05e0f0c2cb69a31046cbbbb3ef910ee1f0b737d8e2f58ab09f',
-//   routes: {
-//     callback: '/callback'
-//   }
-// };
-
-// for (const key in config) {
-//   if (config.hasOwnProperty(key)) {
-//     console.log(`${key}: ${config[key]}`);
-//   }
-// }
-
 router.get('/myProfileRoutes', async (req, res) => {
   try {
     console.log('myProfileRoutes accessed');
