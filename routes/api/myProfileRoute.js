@@ -1,10 +1,10 @@
 const MyProfile = require('../../models/ProfileInfoSchema');
 const express = require('express');
 const router = express.Router();
-console.log('myProfileRoutes accessed');
+console.log('myprofile retrieved');
 
-router.get("/myProfileRoutes", async (req, res) => {
-  console.log('myProfileRoutes working');
+router.get("/", async (req, res) => {
+  console.log('myprofile accessed');
   // console.log("**************getData************");
 
   try {

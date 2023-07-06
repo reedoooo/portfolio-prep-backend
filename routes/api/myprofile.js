@@ -8,7 +8,7 @@ router.get("/myProfileRoutes", async (req, res) => {
   // console.log("**************getData************");
 
   try {
-    const myProfile = await MyProfile.findById('6421488b773d5b18c1fa0bf3');
+    const myProfile = await MyProfile.find({});
 
     res.status(200).json(myProfile); // Send myProfile directly
     console.log(myProfile[0]); // Log myProfile directly
