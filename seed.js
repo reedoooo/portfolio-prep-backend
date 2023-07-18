@@ -1,5 +1,11 @@
+
+// Purpose: This file is used to seed the database with data. It is not used in the final product.
+
 const mongoose = require('mongoose');
+
 require('dotenv').config();
+
+
 
 mongoose.connect(process.env.DATABASE_URL);
 

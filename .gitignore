@@ -76,7 +76,7 @@ package-lock.json
 .eslintignore
 .eslintrc.json
 .prettierrc
-cache.js
+# cache.js
 # https.js
 
 

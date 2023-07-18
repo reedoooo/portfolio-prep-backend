@@ -36,5 +36,3 @@ const TabDataSchema = new Schema({
 });
 
 module.exports = mongoose.model('mycustomtabs', TabDataSchema);
-
-

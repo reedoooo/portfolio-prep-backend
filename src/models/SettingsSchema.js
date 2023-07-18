@@ -1,8 +1,8 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-console.log("settings schema accessed");
+console.log('settings schema accessed');
 
 const baseInfo = new Schema({
   name: String,
@@ -13,4 +13,4 @@ const SettingsSchema = new Schema({
   settings: baseInfo,
 });
 
-module.exports = mongoose.model("MySettingsRoutes", SettingsSchema);
+module.exports = mongoose.model('MySettingsRoutes', SettingsSchema);
