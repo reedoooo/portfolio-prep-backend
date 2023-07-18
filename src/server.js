@@ -1,41 +1,51 @@
 // DEPENDENCIES
-const dotenv = require("dotenv");
-const express = require("express");
-const path = require("path");
-const mongoose = require("mongoose");
+const dotenv = require('dotenv');
+const express = require('express');
+const path = require('path');
+const mongoose = require('mongoose');
 
 // Configure dotenv
 dotenv.config();
 
 // Import custom middleware and routes
-const applyCustomMiddleware = require("./middleware");
-const routes = require("./routes");
+const applyCustomMiddleware = require('./middleware');
+const routes = require('./routes');
 
 // EXPRESS APP
 const app = express();
 // app.use(express.json());
 
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "ejs");
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
 // Apply middleware
 applyCustomMiddleware(app);
 
 // HANDLE ROUTES
-app.use("/api", routes);
+// app.use("/api", routes);
+
+// HANDLE ROUTES
+app.use(
+  '/api',
+  (req, res, next) => {
+    console.log(`Received request on API route: ${req.method} ${req.originalUrl}`);
+    next();
+  },
+  routes,
+);
 
 // HANDLE ERRORS
 app.use(function (req, res, next) {
-  const err = new Error("Not Found");
+  const err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
 app.use(function (err, req, res, next) {
   res.status(err.status || 500);
-  res.render("error", {
+  res.render('error', {
     message: err.message,
-    error: process.env.NODE_ENV !== "production" ? err : {},
+    error: process.env.NODE_ENV !== 'production' ? err : {},
   });
 });
 

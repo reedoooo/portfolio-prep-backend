@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
-
+ 
 // Product Schema
 const ProductSchema = new mongoose.Schema(
   {

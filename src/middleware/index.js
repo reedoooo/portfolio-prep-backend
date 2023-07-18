@@ -9,7 +9,7 @@ module.exports = function applyCustomMiddleware(app) {
     app.use(express.json());
     app.use(
       cors({
-        origin: "http://localhost:3000",
+        origin: ["http://localhost:3000", "exp://192.168.1.34:19000"],
         methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
         allowedHeaders: ["Content-Type", "Authorization"],
       })
