@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const taskSchema = new Schema({
@@ -23,7 +23,7 @@ const taskSchema = new Schema({
   difficulty: {
     type: Number,
     required: false,
-  }
+  },
   // createdAt: {
   //   type: Date,
   //   default: Date.now,
@@ -34,5 +34,4 @@ const ToDoDataSchema = new Schema({
   task: [taskSchema],
 });
 
-
-module.exports = mongoose.model("currentasks", ToDoDataSchema);
+module.exports = mongoose.model('currentasks', ToDoDataSchema);

@@ -1,7 +1,7 @@
-const MyProfile = require("../models/ProfileInfoSchema");
+const MyProfile = require('../models/ProfileInfoSchema');
 
 exports.getProfile = async (req, res) => {
-  console.log("myprofile accessed");
+  console.log('myprofile accessed');
   // console.log("**************getData************");
 
   try {
@@ -11,6 +11,6 @@ exports.getProfile = async (req, res) => {
     console.log(myProfile[0]); // Log myProfile directly
   } catch (error) {
     res.status(500).json({ message: error.message });
-    console.log("try something else...");
+    console.log('try something else...');
   }
 };

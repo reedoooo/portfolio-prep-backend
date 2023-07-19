@@ -1,7 +1,7 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-console.log('tab data schema accessed')
+console.log('tab data schema accessed');
 
 const baseInfo = new Schema({
   title: String,
@@ -9,7 +9,7 @@ const baseInfo = new Schema({
 });
 
 const NotesSchema = new Schema({
-  contents: [baseInfo],  // Array of baseInfo
+  contents: [baseInfo], // Array of baseInfo
 });
 
-module.exports = mongoose.model("MyNotesRoutes", NotesSchema);
+module.exports = mongoose.model('MyNotesRoutes', NotesSchema);

@@ -1,4 +1,4 @@
-const MySettingsRoutes = require("../models/SettingsSchema");
+const MySettingsRoutes = require('../models/SettingsSchema');
 
 exports.getAllSettings = async (req, res) => {
   try {
@@ -6,7 +6,7 @@ exports.getAllSettings = async (req, res) => {
     res.json(settings);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Server Error" });
+    res.status(500).json({ error: 'Server Error' });
   }
 };
 
@@ -21,7 +21,7 @@ exports.createNewSetting = async (req, res) => {
     res.json(savedSetting);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Server Error" });
+    res.status(500).json({ error: 'Server Error' });
   }
 };
 
@@ -30,7 +30,7 @@ exports.updateSetting = async (req, res) => {
     const { name, color } = req.body;
     const setting = await MySettingsRoutes.findById(req.params.id);
     if (!setting) {
-      return res.status(404).json({ error: "Setting not found" });
+      return res.status(404).json({ error: 'Setting not found' });
     }
     setting.name = name;
     setting.color = color;
@@ -38,7 +38,7 @@ exports.updateSetting = async (req, res) => {
     res.json(updatedSetting);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Server Error" });
+    res.status(500).json({ error: 'Server Error' });
   }
 };
 
@@ -46,12 +46,12 @@ exports.deleteSetting = async (req, res) => {
   try {
     const setting = await MySettingsRoutes.findById(req.params.id);
     if (!setting) {
-      return res.status(404).json({ error: "Setting not found" });
+      return res.status(404).json({ error: 'Setting not found' });
     }
     await setting.remove();
-    res.json({ message: "Setting deleted" });
+    res.json({ message: 'Setting deleted' });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Server Error" });
+    res.status(500).json({ error: 'Server Error' });
   }
 };

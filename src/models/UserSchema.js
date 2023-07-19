@@ -58,11 +58,14 @@ const securityInfo = new Schema({
   role_data: { type: roleSchema, required: true },
 });
 
-const UserSchema = new Schema({
-  basic_info: { type: baseInfo, required: false },
-  login_data: { type: securityInfo, required: true },
-  projects: [projectSchema],
-  experience: [experienceSchema],
-}, { timestamps: true });
+const UserSchema = new Schema(
+  {
+    basic_info: { type: baseInfo, required: false },
+    login_data: { type: securityInfo, required: true },
+    projects: [projectSchema],
+    experience: [experienceSchema],
+  },
+  { timestamps: true },
+);
 
 module.exports = mongoose.model('Users', UserSchema);

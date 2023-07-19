@@ -18,11 +18,10 @@
 
 // module.exports = mongoose.model("savedtabs", TabDataSchema);
 
-const mongoose = require("mongoose");
-
+const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-console.log('tab data schema accessed')
+console.log('tab data schema accessed');
 
 const baseInfo = new Schema({
   name: String,
@@ -36,5 +35,4 @@ const TabDataSchema = new Schema({
   tab: baseInfo,
 });
 
-module.exports = mongoose.model("mycustomtabs", TabDataSchema);
-
+module.exports = mongoose.model('mycustomtabs', TabDataSchema);

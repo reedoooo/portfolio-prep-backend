@@ -1,6 +1,6 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 // Product Schema
 const ProductSchema = new mongoose.Schema(
@@ -13,19 +13,19 @@ const ProductSchema = new mongoose.Schema(
         name: String,
         price: Number,
         inStock: Number,
-      }
-    ]
+      },
+    ],
   },
   {
-    collection: "products",
-  }
+    collection: 'products',
+  },
 );
 
-const Product = mongoose.model("Product", ProductSchema);
+const Product = mongoose.model('Product', ProductSchema);
 
 // Routes
 
-router.get("/", async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const products = await Product.find({});
     res.json(products);
@@ -34,13 +34,13 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/:id", async (req, res) => {
-  console.log('req.params.id: ', req.params.id)
+router.get('/:id', async (req, res) => {
+  console.log('req.params.id: ', req.params.id);
   try {
     const product = await Product.findOne({ _id: req.params.id });
-    console.log('product: ', product.products)
+    console.log('product: ', product.products);
     if (product === null) {
-      return res.status(404).json({ message: "Cannot find product" });
+      return res.status(404).json({ message: 'Cannot find product' });
     }
     res.json(product);
   } catch (err) {
@@ -49,7 +49,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // Express.js
-router.post("/", async (req, res) => {
+router.post('/', async (req, res) => {
   const product = new Product(req.body); // req.body should contain the new product data
   try {
     await product.save();
@@ -59,12 +59,12 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.put("/:id", async (req, res) => {
+router.put('/:id', async (req, res) => {
   try {
     const product = await Product.findOneAndUpdate(
       { _id: req.params.id },
       { inStock: req.body.inStock },
-      { new: true }
+      { new: true },
     );
     res.json(product);
   } catch (err) {
@@ -73,17 +73,16 @@ router.put("/:id", async (req, res) => {
 });
 
 // Delete product
-router.delete("/:id", async (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
     const product = await Product.findByIdAndDelete(req.params.id);
     if (product === null) {
-      return res.status(404).json({ message: "Cannot find product" });
+      return res.status(404).json({ message: 'Cannot find product' });
     }
-    res.json({ message: "Product deleted successfully" });
+    res.json({ message: 'Product deleted successfully' });
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }
 });
-
 
 module.exports = router;
