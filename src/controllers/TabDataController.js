@@ -1,6 +1,8 @@
 const TabData = require('../models/TabDataSchema');
 
 exports.getTabs = async (req, res) => {
+  console.log('req.body: ', req.body);
+
   try {
     const tabData = await TabData.find({});
     res.status(200).json(tabData);
@@ -11,6 +13,7 @@ exports.getTabs = async (req, res) => {
 };
 
 exports.createTab = async (req, res) => {
+  console.log('req.body: ', req.body);
   const { name, size, color, linkUrl, imgUrl } = req.body;
 
   const newTabData = new TabData({
@@ -27,6 +30,8 @@ exports.createTab = async (req, res) => {
 };
 
 exports.updateTab = async (req, res) => {
+  console.log('req.body: ', req.body);
+
   const { id } = req.params;
   const { name, size, color, linkUrl, imgUrl } = req.body;
 
