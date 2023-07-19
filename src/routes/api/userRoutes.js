@@ -1,50 +1,32 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const { verifyToken } = require("../../services/auth.js");
+const { verifyToken } = require('../../services/auth.js');
 const UserController = require('../../controllers/userController.js');
 
 function asyncHandler(fn) {
-    return (req, res, next) => {
-        Promise.resolve(fn(req, res, next)).catch((error) => {
-            console.error(`Error occurred in ${req.path}: `, error);
-            next(error);
-        });
-    };
+  return (req, res, next) => {
+    Promise.resolve(fn(req, res, next)).catch((error) => {
+      console.error(`Error occurred in ${req.path}: `, error);
+      next(error);
+    });
+  };
 }
 
-router.post(
-    "/signup",
-    asyncHandler(UserController.signup)
-);
+router.post('/signup', asyncHandler(UserController.signup));
 
-router.post(
-    "/signin",
-    asyncHandler(UserController.signin)
-);
+router.post('/signin', asyncHandler(UserController.signin));
 
-router.get(
-    "/profile",
-    verifyToken,
-    asyncHandler(UserController.getProfile)
-);
+router.get('/profile', verifyToken, asyncHandler(UserController.getProfile));
 
-router.put(
-    "/profile",
-    verifyToken,
-    asyncHandler(UserController.updateProfile)
-);
+router.put('/profile/:id', verifyToken, asyncHandler(UserController.updateProfile));
 
-router.delete(
-    "/profile",
-    verifyToken,
-    asyncHandler(UserController.deleteProfile)
-);
+router.delete('/profile/:id', verifyToken, asyncHandler(UserController.deleteProfile));
 
-router.get("/:id", asyncHandler(UserController.getUserById));
+router.get('/:id', asyncHandler(UserController.getUserById));
 
 router.use((error, req, res, next) => {
-    console.error("Middleware error: ", error);
-    res.status(500).send("Server error.");
+  console.error('Middleware error: ', error);
+  res.status(500).send('Server error.');
 });
 
 module.exports = router;

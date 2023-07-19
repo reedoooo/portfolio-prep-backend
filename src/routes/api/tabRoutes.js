@@ -8,4 +8,3 @@ router.put('/:id', TabDataController.updateTab);
 router.delete('/:id', TabDataController.deleteTab);
 
 module.exports = router;
- 
