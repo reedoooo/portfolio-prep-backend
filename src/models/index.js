@@ -1,7 +1,7 @@
 // Exports the models
 // ============================================================================
 module.exports = {
-  Users: require('./UsersSchema'),
+  Users: require('./UserSchema'),
   Settings: require('./SettingsSchema'),
   SavedResponses: require('./SavedResponsesSchema'),
   ToDoData: require('./ToDoDataSchema'),
