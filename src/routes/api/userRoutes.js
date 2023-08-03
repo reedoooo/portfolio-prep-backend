@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { verifyToken } = require('../../services/auth.js');
-const UserController = require('../../controllers/userController.js');
+const UserController = require('../../controllers/UserController.js');
 
 function asyncHandler(fn) {
   return (req, res, next) => {
