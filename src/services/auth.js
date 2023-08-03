@@ -1,25 +1,25 @@
 // services.js
-const Users = require("../models/UserSchema");
+const Users = require('../models/UserSchema');
 const jwt = require('jsonwebtoken');
 const { validatePassword, createToken } = require('../utils/utils');
 const SECRET_KEY = process.env.SECRET_KEY;
 
 const verifyToken = (req, res, next) => {
-  const bearerHeader = req.headers["authorization"];
-  console.log("Bearer Header:", bearerHeader);
+  const bearerHeader = req.headers['authorization'];
+  console.log('Bearer Header:', bearerHeader);
 
   if (!bearerHeader) {
-    return res.status(403).send({ message: "No token provided" });
+    return res.status(403).send({ message: 'No token provided' });
   }
 
   // Split at the space
-  const bearer = bearerHeader.split(" ");
+  const bearer = bearerHeader.split(' ');
   // Get token from array
   const token = bearer[1];
 
   jwt.verify(token, SECRET_KEY, (err, decoded) => {
     if (err) {
-      return res.status(401).send({ message: "Unauthorized!" });
+      return res.status(401).send({ message: 'Unauthorized!' });
     }
 
     req.authData = decoded;
@@ -28,7 +28,7 @@ const verifyToken = (req, res, next) => {
 };
 
 const findUser = async (username) => {
-  return await Users.findOne({ "login_data.username": username });
+  return await Users.findOne({ 'login_data.username': username });
 };
 
 module.exports = {
