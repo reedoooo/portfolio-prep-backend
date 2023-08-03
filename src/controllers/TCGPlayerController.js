@@ -8,7 +8,7 @@ exports.generateToken = async (req, res) => {
   const data = qs.stringify({
     grant_type: 'client_credentials',
     client_id: 'PUBLIC_KEY',
-    client_secret: 'PRIVATE_KEY',
+    client_secret: process.env.CLIENT_SECRET,
   });
 
   const config = {
