@@ -71,38 +71,128 @@
   },
   "projects": [
     {
-      "title": "Salmon Cookies",
-      "startDate": "2022",
-      "description": "Salmon Cookies is a web application that tracks cookie sales. This project showcases the developer's proficiency in Angular, TypeScript, and C#. The application includes features such as calculating the number of cookies needed to be sold, calculating sales data, and displaying sales data in a table format. The application is also responsive, which makes it easily accessible on different devices. Overall, Salmon Cookies demonstrates the developer's ability to use different technologies to create a functional and user-friendly web application.",
-      "images": [
-        "images/portfolio/salmon-cookies/salmon-cookies-1.png",
-        "images/portfolio/salmon-cookies/salmon-cookies-2.png"
-      ],
-      "url": "https://github.com/reedoooo/salmon-cookies",
+      "title": "Portfolio",
+      "startDate": "Mar 2023",
+      "description": "Personal and professional showcase developed using JavaScript, React.js, Express, MongoDB, Auth0, Chakra UI, Node.js.",
+      "url": "https://reedvogt.com/",
+      "readmeurl": "https://github.com/reedoooo/portfolio-prep#readme",
       "technologies": [
         {
-          "class": "devicon-angularjs-plain",
-          "name": "Angular"
+          "class": "devicon-javascript-plain",
+          "name": "JavaScript"
         },
         {
-          "class": "devicon-typescript-plain",
-          "name": "TypeScript"
+          "class": "devicon-react-original",
+          "name": "React.js"
         },
         {
-          "class": "devicon-csharp-plain",
-          "name": "C#"
+          "class": "devicon-nodejs-plain",
+          "name": "Node.js"
+        },
+        {
+          "class": "devicon-mongodb-plain",
+          "name": "MongoDB"
         }
       ]
     },
     {
-      "title": "Resume Ready",
-      "startDate": "2022",
+      "title": "TabPage",
+      "startDate": "May 2023",
+      "description": "Work organizer web app leveraging multiple APIs, developed using the same tech stack as Portfolio.",
+      "url": "https://tabpage.netlify.app/",
+      "readmeurl": "https://github.com/reedoooo/tabpage#readme",
+      "technologies": [
+        {
+          "class": "devicon-javascript-plain",
+          "name": "JavaScript"
+        },
+        {
+          "class": "devicon-react-original",
+          "name": "React.js"
+        },
+        {
+          "class": "devicon-nodejs-plain",
+          "name": "Node.js"
+        },
+        {
+          "class": "devicon-mongodb-plain",
+          "name": "MongoDB"
+        }
+      ]
+    },
+    {
+      "title": "TCG Database",
+      "startDate": "Feb 2023",
+      "description": "A strategic, mobile-friendly tool for YuGiOh TCG fans to manage collections, browse cards, and build custom decks, developed using JavaScript, React.js, Express, Node.js, MongoDB, Chakra UI, JWT, and OAuth.",
+      "url": "https://tcg-database.netlify.app/",
+      "readmeurl": "https://github.com/reedoooo/yugioh-database#readme",
+      "technologies": [
+        {
+          "class": "devicon-javascript-plain",
+          "name": "JavaScript"
+        },
+        {
+          "class": "devicon-react-original",
+          "name": "React.js"
+        },
+        {
+          "class": "devicon-nodejs-plain",
+          "name": "Node.js"
+        },
+        {
+          "class": "devicon-mongodb-plain",
+          "name": "MongoDB"
+        }
+      ]
+    },
+    {
+      "title": "Redux Storefront",
+      "startDate": "Jun 2023",
+      "description": "A basic retail application project emphasizes my proficiency in React & Redux and understanding of global state management.",
+      "url": "https://redux-storefront.netlify.app/",
+      "readmeurl": "https://github.com/reedoooo/reduxStoreFront#readme",
+      "technologies": [
+        {
+          "class": "devicon-react-original",
+          "name": "React.js"
+        },
+        {
+          "class": "devicon-redux-original",
+          "name": "Redux"
+        }
+      ]
+    },
+    {
+      "title": "Salmon Cookies",
+      "startDate": "Jan 2023",
+      "description": "A sales data website developed for a hypothetical client, built using the VueJS framework, Bootstrap 5, and Jest for testing.",
+      "url": "https://salmon-cookies.netlify.app/",
+      "readmeurl": "https://github.com/reedoooo/cookies-stand-fork#readme",
+      "technologies": [
+        {
+          "class": "devicon-vuejs-plain",
+          "name": "Vue.js"
+        },
+        {
+          "class": "devicon-bootstrap-plain",
+          "name": "Bootstrap"
+        },
+        {
+          "class": "devicon-jest-plain",
+          "name": "Jest"
+        }
+      ]
+    },
+    {
+      "title": "Enhanced Card Store",
+      "startDate": "May 2023",
       "description": "Resume Ready is a personal portfolio site that allows users to edit and customize their portfolios. The application showcases the developer's skills in React and JavaScript. The site has a sleek and modern design and includes features such as creating new portfolio entries, deleting existing ones, and editing existing entries. Additionally, the application has a search feature that allows users to search for specific entries. Resume Ready demonstrates the developer's ability to use React and JavaScript to create a user-friendly and customizable web application.",
       "images": [
         "images/portfolio/resume-ready/project-portfolio-1.png",
         "images/portfolio/resume-ready/project-portfolio-2.png"
       ],
-      "url": "https://github.com/reedoooo/resume-ready",
+      "url": "https://tcg-store.netlify.app/",
+      "readmeurl": "https://github.com/reedoooo/enhanced-card-store#readme",
       "technologies": [
         {
           "class": "devicon-react-original",
@@ -116,13 +206,14 @@
     },
     {
       "title": "Odd Duck Products",
-      "startDate": "2022",
+      "startDate": "Feb 2023",
       "description": "Odd Duck Products is an e-commerce website that sells unique and quirky products. The project showcases the developer's proficiency in Angular, TypeScript, and C#. The website includes features such as a shopping cart, a search bar, and a product details page. Additionally, the website has an admin portal that allows the site owner to manage products, edit product details, and view sales data. Odd Duck Products demonstrates the developer's ability to use Angular and TypeScript to create a functional and responsive e-commerce website.",
       "images": [
         "images/portfolio/odd-duck-product/odd-duck-product-1.png",
         "images/portfolio/odd-duck-product/odd-duck-product-2.png"
       ],
       "url": "https://github.com/reedoooo/odd-duck-product",
+      "readmeurl": "https://github.com/reedoooo/resume-ready",
       "technologies": [
         {
           "class": "devicon-angularjs-plain",
@@ -207,152 +298,93 @@
           "name": "C#"
         }
       ]
-    },
-    {
-      "title": "TBD",
-      "startDate": "2022",
-      "description": "Odd Duck Products is an e-commerce website that sells unique and quirky products. The project showcases the developer's proficiency in Angular, TypeScript, and C#. The website includes features such as a shopping cart, a search bar, and a product details page. Additionally, the website has an admin portal that allows the site owner to manage products, edit product details, and view sales data. Odd Duck Products demonstrates the developer's ability to use Angular and TypeScript to create a functional and responsive e-commerce website.",
-      "images": [
-        "https://www.gifpng.com/368x230",
-        "https://www.gifpng.com/{368}x{230}"
-      ],
-      "url": "https://github.com/reedoooo/",
-      "technologies": [
-        {
-          "class": "devicon-react-original",
-          "name": "React"
-        },
-        {
-          "class": "devicon-bootstrap-plain",
-          "name": "Bootstrap"
-        }
-      ]
-    },
-    {
-      "title": "TBD",
-      "startDate": "2022",
-      "description": "Odd Duck Products is an e-commerce website that sells unique and quirky products. The project showcases the developer's proficiency in Angular, TypeScript, and C#. The website includes features such as a shopping cart, a search bar, and a product details page. Additionally, the website has an admin portal that allows the site owner to manage products, edit product details, and view sales data. Odd Duck Products demonstrates the developer's ability to use Angular and TypeScript to create a functional and responsive e-commerce website.",
-      "images": [
-        "https://www.gifpng.com/368x230",
-        "https://www.gifpng.com/{368}x{230}"
-      ],
-      "url": "https://github.com/reedoooo/",
-      "technologies": [
-        {
-          "class": "devicon-react-original",
-          "name": "React"
-        },
-        {
-          "class": "devicon-bootstrap-plain",
-          "name": "Bootstrap"
-        }
-      ]
-    },
-    {
-      "title": "TBD",
-      "startDate": "2022",
-      "description": "Odd Duck Products is an e-commerce website that sells unique and quirky products. The project showcases the developer's proficiency in Angular, TypeScript, and C#. The website includes features such as a shopping cart, a search bar, and a product details page. Additionally, the website has an admin portal that allows the site owner to manage products, edit product details, and view sales data. Odd Duck Products demonstrates the developer's ability to use Angular and TypeScript to create a functional and responsive e-commerce website.",
-      "images": [
-        "https://www.gifpng.com/368x230",
-        "https://www.gifpng.com/{368}x{230}"
-      ],
-      "url": "https://github.com/reedoooo/",
-      "technologies": [
-        {
-          "class": "devicon-react-original",
-          "name": "React"
-        },
-        {
-          "class": "devicon-bootstrap-plain",
-          "name": "Bootstrap"
-        }
-      ]
-    },
-    {
-      "title": "TBD",
-      "startDate": "2022",
-      "description": "Odd Duck Products is an e-commerce website that sells unique and quirky products. The project showcases the developer's proficiency in Angular, TypeScript, and C#. The website includes features such as a shopping cart, a search bar, and a product details page. Additionally, the website has an admin portal that allows the site owner to manage products, edit product details, and view sales data. Odd Duck Products demonstrates the developer's ability to use Angular and TypeScript to create a functional and responsive e-commerce website.",
-      "images": [
-        "https://www.gifpng.com/368x230",
-        "https://www.gifpng.com/{368}x{230}"
-      ],
-      "url": "https://github.com/reedoooo/",
-      "technologies": [
-        {
-          "class": "devicon-react-original",
-          "name": "React"
-        },
-        {
-          "class": "devicon-bootstrap-plain",
-          "name": "Bootstrap"
-        }
-      ]
-    },
-    {
-      "title": "TBD",
-      "startDate": "2022",
-      "description": "Odd Duck Products is an e-commerce website that sells unique and quirky products. The project showcases the developer's proficiency in Angular, TypeScript, and C#. The website includes features such as a shopping cart, a search bar, and a product details page. Additionally, the website has an admin portal that allows the site owner to manage products, edit product details, and view sales data. Odd Duck Products demonstrates the developer's ability to use Angular and TypeScript to create a functional and responsive e-commerce website.",
-      "images": [
-        "https://www.gifpng.com/368x230",
-        "https://www.gifpng.com/{368}x{230}"
-      ],
-      "url": "https://github.com/reedoooo/",
-      "technologies": [
-        {
-          "class": "devicon-react-original",
-          "name": "React"
-        },
-        {
-          "class": "devicon-bootstrap-plain",
-          "name": "Bootstrap"
-        }
-      ]
-    },
-    {
-      "title": "TBD",
-      "startDate": "2022",
-      "description": "Odd Duck Products is an e-commerce website that sells unique and quirky products. The project showcases the developer's proficiency in Angular, TypeScript, and C#. The website includes features such as a shopping cart, a search bar, and a product details page. Additionally, the website has an admin portal that allows the site owner to manage products, edit product details, and view sales data. Odd Duck Products demonstrates the developer's ability to use Angular and TypeScript to create a functional and responsive e-commerce website.",
-      "images": [
-        "https://www.gifpng.com/368x230",
-        "https://www.gifpng.com/{368}x{230}"
-      ],
-      "url": "https://github.com/reedoooo/",
-      "technologies": [
-        {
-          "class": "devicon-react-original",
-          "name": "React"
-        },
-        {
-          "class": "devicon-bootstrap-plain",
-          "name": "Bootstrap"
-        }
-      ]
     }
   ],
   "experience": [
     {
-      "company": "DefOpenSource",
-      "title": "Front-End Developer",
-      "years": "10.2019 - present",
-      "mainTech": ["Angular 8/9/10"],
+      "duration": "10.2019 - present",
+      "company": "Pagliacci",
+      "title": "Front-End Pizza Developer",
       "technologies": [
-        "REST API",
-        "RxJS",
-        "JavaScript",
-        "Bootstrap",
-        "MDBootstrap",
-        "EF Core",
-        ".NET Core",
-        "SignalR",
-        "Angular Material"
+        "angular",
+        "restapi",
+        "rxjs",
+        "javascript",
+        "bootstrap",
+        "mdbootstrap",
+        "efcore",
+        "dotnetcore",
+        "signalr",
+        "angularmaterial"
       ]
     },
     {
-      "company": "Serros Solutions",
-      "title": "Intern",
-      "years": "01.2018 - 09.2019",
-      "mainTech": ["Angular 7/8"],
-      "technologies": ["RxJS", "Django", "PHP", "JavaScript", "DHTMLX Gantt"]
+      "duration": "01.2018 - 09.2019",
+      "company": "Amazon Warehouse",
+      "title": "Warehouse Associate",
+      "technologies": ["angular", "rxjs", "django", "php", "javascript", "dhtmlxgantt"]
     }
-  ]
+  ],
+  "technologyMapping": {
+    "react": {
+      "icon": "<DiReact />",
+      "description": "React is a JavaScript library for building user interfaces."
+    },
+    "typescript": {
+      "icon": "<DiJavascript1 />",
+      "description": "TypeScript is a typed superset of JavaScript that compiles to plain JavaScript."
+    },
+    "angular": {
+      "icon": "<i className='fab fa-angular'></i>",
+      "description": "Angular is a platform and framework for building client-side applications with HTML, CSS, and TypeScript."
+    },
+    "restapi": {
+      "icon": "<i className='fas fa-network-wired'></i>",
+      "description": "REST API allows for interaction with web services using HTTP methods."
+    },
+    "rxjs": {
+      "icon": "<i className='fas fa-sync-alt'></i>",
+      "description": "RxJS is a library for composing asynchronous and event-based programs by using observable sequences."
+    },
+    "javascript": {
+      "icon": "<DiJavascript1 />",
+      "description": "JavaScript is a versatile language that powers the web, allowing developers to build interactive websites."
+    },
+    "bootstrap": {
+      "icon": "<i className='fab fa-bootstrap'></i>",
+      "description": "Bootstrap is a free and open-source CSS framework directed at responsive, mobile-first front-end web development."
+    },
+    "mdbootstrap": {
+      "icon": "<i className='fab fa-bootstrap'></i>",
+      "description": "MDBootstrap (Material Design for Bootstrap) is an MIT Licensed framework - free for personal & commercial use, combining Bootstrap with Material Design."
+    },
+    "efcore": {
+      "icon": "<i className='fas fa-database'></i>",
+      "description": "Entity Framework Core (EF Core) is a lightweight, extensible, open-source, and cross-platform version of the popular Entity Framework data access technology."
+    },
+    "dotnetcore": {
+      "icon": "<i className='fab fa-microsoft'></i>",
+      "description": ".NET Core is a cross-platform version of .NET, Microsoft's comprehensive and consistent programming model for building applications that have visually stunning user experiences."
+    },
+    "signalr": {
+      "icon": "<i className='fas fa-satellite-dish'></i>",
+      "description": "SignalR is a free and open-source software library for Microsoft ASP.NET that allows server code to send asynchronous notifications to client-side web applications."
+    },
+    "angularmaterial": {
+      "icon": "<i className='fab fa-angular'></i>",
+      "description": "Angular Material is a UI component library for Angular developers. It provides a rich set of high-quality native components out of the box."
+    },
+    "django": {
+      "icon": "<i className='fab fa-python'></i>",
+      "description": "Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design."
+    },
+    "php": {
+      "icon": "<i className='fab fa-php'></i>",
+      "description": "PHP is a popular general-purpose scripting language that is especially suited to web development."
+    },
+    "dhtmlxgantt": {
+      "icon": "<i className='fas fa-chart-bar'></i>",
+      "description": "DHTMLX Gantt is a JavaScript/HTML5 Gantt chart library that allows you to implement project management applications on the web."
+    }
+  }
 }
