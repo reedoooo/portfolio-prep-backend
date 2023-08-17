@@ -3,6 +3,7 @@ const router = express.Router();
 
 const myUserRoutes = require('./api/userRoutes');
 const myProfileRoute = require('./api/profileRoutes');
+// const profileRoutes = require('./api/profileRoutes');
 const myTabRoutes = require('./api/tabRoutes');
 const myTodoRoutes = require('./api/todoRoutes');
 const mySettingsRoutes = require('./api/settingsRoutes');
@@ -20,6 +21,7 @@ router.use('/notes', myNotesRoutes);
 router.use('/settings', mySettingsRoutes);
 router.use('/chat', myOpenAiRoutes);
 router.use('/myprofile', myProfileRoute);
+// router.use('/privateroute/profile', profileRoutes);
 router.use('/products', productRoutes);
 router.use('/categories', categoryRoutes);
 

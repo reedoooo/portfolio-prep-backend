@@ -11,33 +11,44 @@ const socialSchema = new Schema({
 });
 // console.log('social schema created', socialSchema)
 const technologySchema = new Schema({
-  class: String,
-  name: String,
+  name: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  class: {
+    type: String,
+    required: true,
+  },
+  description: String,
 });
 // console.log('technology schema created', technologySchema)
+
 const projectSchema = new Schema({
   title: String,
   startDate: String,
   description: String,
   images: [String],
   url: String,
+  readmeurl: String,
   technologies: [technologySchema],
 });
 // console.log('project schema created', projectSchema)
 const experienceSchema = new Schema({
   company: String,
   title: String,
-  years: String,
+  description: String,
+  duration: String,
   mainTech: [String],
   technologies: [String],
 });
 // console.log('experience schema created', experienceSchema)
 
-//   const iconSchema = new Schema({
-//     name: String,
-//     class: String,
-//     level: String,
-//   });
+const iconSchema = new Schema({
+  name: String,
+  class: String,
+  level: String,
+});
 
 const baseInfo = new Schema({
   name: String,
@@ -57,11 +68,12 @@ const baseInfo = new Schema({
 
 const ProfileInfoSchema = new Schema({
   basic_info: baseInfo,
-  // skills: {
-  //   icons: [iconSchema],
-  // },
+  skills: {
+    icons: [iconSchema],
+  },
   projects: [projectSchema],
   experience: [experienceSchema],
+  technologyMapping: [technologySchema],
 });
 
 module.exports = mongoose.model('special-profiles', ProfileInfoSchema);
