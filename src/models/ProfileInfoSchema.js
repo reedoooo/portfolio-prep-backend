@@ -16,10 +16,6 @@ const technologySchema = new Schema({
     required: true,
     unique: true,
   },
-  icon: {
-    type: String,
-    required: true,
-  },
   class: {
     type: String,
     required: true,
@@ -35,17 +31,13 @@ const projectSchema = new Schema({
   images: [String],
   url: String,
   readmeurl: String,
-  technologies: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Technology',
-    },
-  ],
+  technologies: [technologySchema],
 });
 // console.log('project schema created', projectSchema)
 const experienceSchema = new Schema({
   company: String,
   title: String,
+  description: String,
   duration: String,
   mainTech: [String],
   technologies: [String],

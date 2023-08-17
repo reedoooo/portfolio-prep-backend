@@ -15,6 +15,8 @@ module.exports = function applyCustomMiddleware(app) {
         'http://localhost:19006',
         'http://localhost:19000',
         'https://myportfolio-showcase.netlify.app',
+        'https://reedvogt.com',
+        'https://reedvogt.com/',
       ],
       methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
       allowedHeaders: ['Content-Type', 'Authorization'],

@@ -74,23 +74,26 @@
       "title": "Portfolio",
       "startDate": "Mar 2023",
       "description": "Personal and professional showcase developed using JavaScript, React.js, Express, MongoDB, Auth0, Chakra UI, Node.js.",
+      "images": [
+        "images/portfolio/portfolio/portfolio"
+      ],
       "url": "https://reedvogt.com/",
       "readmeurl": "https://github.com/reedoooo/portfolio-prep#readme",
       "technologies": [
         {
-          "class": "devicon-javascript-plain",
+          "class": "DiJavascript1",
           "name": "JavaScript"
         },
         {
-          "class": "devicon-react-original",
+          "class": "DiReact",
           "name": "React.js"
         },
         {
-          "class": "devicon-nodejs-plain",
+          "class": "DiNodejs",
           "name": "Node.js"
         },
         {
-          "class": "devicon-mongodb-plain",
+          "class": "SiMongodb",
           "name": "MongoDB"
         }
       ]
@@ -99,23 +102,26 @@
       "title": "TabPage",
       "startDate": "May 2023",
       "description": "Work organizer web app leveraging multiple APIs, developed using the same tech stack as Portfolio.",
+      "images": [
+        "images/portfolio/tabpage/tabpage"
+      ],
       "url": "https://tabpage.netlify.app/",
       "readmeurl": "https://github.com/reedoooo/tabpage#readme",
       "technologies": [
         {
-          "class": "devicon-javascript-plain",
+          "class": "DiJavascript1",
           "name": "JavaScript"
         },
         {
-          "class": "devicon-react-original",
+          "class": "DiReact",
           "name": "React.js"
         },
         {
-          "class": "devicon-nodejs-plain",
+          "class": "DiNodejs",
           "name": "Node.js"
         },
         {
-          "class": "devicon-mongodb-plain",
+          "class": "SiMongodb",
           "name": "MongoDB"
         }
       ]
@@ -124,23 +130,26 @@
       "title": "TCG Database",
       "startDate": "Feb 2023",
       "description": "A strategic, mobile-friendly tool for YuGiOh TCG fans to manage collections, browse cards, and build custom decks, developed using JavaScript, React.js, Express, Node.js, MongoDB, Chakra UI, JWT, and OAuth.",
+      "images": [
+        "images/portfolio/tcg-database/tcg-database"
+      ],
       "url": "https://tcg-database.netlify.app/",
       "readmeurl": "https://github.com/reedoooo/yugioh-database#readme",
       "technologies": [
         {
-          "class": "devicon-javascript-plain",
+          "class": "DiJavascript1",
           "name": "JavaScript"
         },
         {
-          "class": "devicon-react-original",
+          "class": "DiReact",
           "name": "React.js"
         },
         {
-          "class": "devicon-nodejs-plain",
+          "class": "DiNodejs",
           "name": "Node.js"
         },
         {
-          "class": "devicon-mongodb-plain",
+          "class": "SiMongodb",
           "name": "MongoDB"
         }
       ]
@@ -149,11 +158,14 @@
       "title": "Redux Storefront",
       "startDate": "Jun 2023",
       "description": "A basic retail application project emphasizes my proficiency in React & Redux and understanding of global state management.",
+      "images": [
+        "images/portfolio/reduxstorefront/reduxstorefront"
+      ],
       "url": "https://redux-storefront.netlify.app/",
       "readmeurl": "https://github.com/reedoooo/reduxStoreFront#readme",
       "technologies": [
         {
-          "class": "devicon-react-original",
+          "class": "DiReact",
           "name": "React.js"
         },
         {
@@ -170,15 +182,15 @@
       "readmeurl": "https://github.com/reedoooo/cookies-stand-fork#readme",
       "technologies": [
         {
-          "class": "devicon-vuejs-plain",
+          "class": "BiLogoVuejs",
           "name": "Vue.js"
         },
         {
-          "class": "devicon-bootstrap-plain",
+          "class": "BsFillBootstrapFill",
           "name": "Bootstrap"
         },
         {
-          "class": "devicon-jest-plain",
+          "class": "SiJest",
           "name": "Jest"
         }
       ]
@@ -188,18 +200,17 @@
       "startDate": "May 2023",
       "description": "Resume Ready is a personal portfolio site that allows users to edit and customize their portfolios. The application showcases the developer's skills in React and JavaScript. The site has a sleek and modern design and includes features such as creating new portfolio entries, deleting existing ones, and editing existing entries. Additionally, the application has a search feature that allows users to search for specific entries. Resume Ready demonstrates the developer's ability to use React and JavaScript to create a user-friendly and customizable web application.",
       "images": [
-        "images/portfolio/resume-ready/project-portfolio-1.png",
-        "images/portfolio/resume-ready/project-portfolio-2.png"
+        "images/portfolio/enhanced-card-store/enhanced-card-store"
       ],
       "url": "https://tcg-store.netlify.app/",
       "readmeurl": "https://github.com/reedoooo/enhanced-card-store#readme",
       "technologies": [
         {
-          "class": "devicon-react-original",
+          "class": "DiReact",
           "name": "React"
         },
         {
-          "class": "devicon-javascript-plain",
+          "class": "DiJavascript1",
           "name": "JavaScript"
         }
       ]
@@ -220,7 +231,7 @@
           "name": "Angular"
         },
         {
-          "class": "devicon-typescript-plain",
+          "class": "BiLogoTypescript",
           "name": "TypeScript"
         },
         {
@@ -286,11 +297,11 @@
       "url": "https://github.com/reedoooo/odd-duck-product",
       "technologies": [
         {
-          "class": "devicon-angularjs-plain",
+          "class": "DiAngular",
           "name": "Angular"
         },
         {
-          "class": "devicon-typescript-plain",
+          "class": "DiJavascript1",
           "name": "TypeScript"
         },
         {
@@ -305,86 +316,107 @@
       "duration": "10.2019 - present",
       "company": "Pagliacci",
       "title": "Front-End Pizza Developer",
+      "description": "Front-End Pizza Developer at Pagliacci Pizza. I work on the website and the mobile app. I also work on the backend and the frontend of the website.",
       "technologies": [
-        "angular",
-        "restapi",
+        "react",
+        "express",
         "rxjs",
         "javascript",
-        "bootstrap",
-        "mdbootstrap",
-        "efcore",
-        "dotnetcore",
-        "signalr",
-        "angularmaterial"
+        "typescript",
+        "mongoDB",
+        "chakraui",
+        "jquery",
+        "signalr"
       ]
     },
     {
       "duration": "01.2018 - 09.2019",
       "company": "Amazon Warehouse",
-      "title": "Warehouse Associate",
-      "technologies": ["angular", "rxjs", "django", "php", "javascript", "dhtmlxgantt"]
+      "title": "Warehouse Associate ",
+      "description": "Warehouse Associate at Amazon. I worked in the warehouse and I was responsible for picking, packing, and shipping items.",
+      "technologies": ["vue", "aws", "bootstrap", "postgreSQL", "javascript", "jest"]
     }
   ],
   "technologyMapping": {
     "react": {
-      "icon": "<DiReact />",
+      "icon": "DiReact",
       "description": "React is a JavaScript library for building user interfaces."
     },
-    "typescript": {
-      "icon": "<DiJavascript1 />",
-      "description": "TypeScript is a typed superset of JavaScript that compiles to plain JavaScript."
-    },
     "angular": {
-      "icon": "<i className='fab fa-angular'></i>",
+      "icon": "DiAngular",
       "description": "Angular is a platform and framework for building client-side applications with HTML, CSS, and TypeScript."
     },
-    "restapi": {
-      "icon": "<i className='fas fa-network-wired'></i>",
-      "description": "REST API allows for interaction with web services using HTTP methods."
+    "vue": {
+      "icon": "BiLogoVuejs",
+      "description": "Vue.js is a progressive JavaScript framework used to develop interactive web interfaces."
     },
-    "rxjs": {
-      "icon": "<i className='fas fa-sync-alt'></i>",
-      "description": "RxJS is a library for composing asynchronous and event-based programs by using observable sequences."
+    "gatsby": {
+      "icon": "RiGatsbyLine",
+      "description": "Gatsby is a free and open-source framework based on React that helps developers build blazing-fast websites and apps."
     },
-    "javascript": {
-      "icon": "<DiJavascript1 />",
-      "description": "JavaScript is a versatile language that powers the web, allowing developers to build interactive websites."
+    "nextjs": {
+      "icon": "SiNextdotjs",
+      "description": "Next.js is a React framework that offers features like server-side rendering and generating static websites."
+    },
+    "Express": {
+      "icon": "SiExpress",
+      "description": "Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications."
+    },
+    "Git": {
+      "icon": "DiGit",
+      "description": "Git is a free and open-source distributed version control system designed to handle everything from small to very large projects with speed and efficiency."
+    },
+    "postgreSQL": {
+      "icon": "DiPostgresql",
+      "description": "PostgreSQL is a powerful, open-source object-relational database system with over 30 years of active development."
+    },
+    "mongoDB": {
+      "icon": "SiMongodb",
+      "description": "MongoDB is a source-available cross-platform document-oriented database program, classified as a NoSQL database."
+    },
+    "mySQL": {
+      "icon": "SiMysql",
+      "description": "MySQL is an open-source relational database management system based on the SQL programming language."
+    },
+    "saas": {
+      "icon": "BsFiletypeSass",
+      "description": "Sass (Syntactically Awesome Stylesheets) is a preprocessor scripting language that is interpreted or compiled into Cascading Style Sheets (CSS)."
     },
     "bootstrap": {
-      "icon": "<i className='fab fa-bootstrap'></i>",
+      "icon": "BsFillBootstrapFill",
       "description": "Bootstrap is a free and open-source CSS framework directed at responsive, mobile-first front-end web development."
     },
-    "mdbootstrap": {
-      "icon": "<i className='fab fa-bootstrap'></i>",
-      "description": "MDBootstrap (Material Design for Bootstrap) is an MIT Licensed framework - free for personal & commercial use, combining Bootstrap with Material Design."
+    "chakraui": {
+      "icon": "SiChakraui",
+      "description": "Chakra UI is a simple, modular, and accessible component library that provides the building blocks you need to build React applications."
     },
-    "efcore": {
-      "icon": "<i className='fas fa-database'></i>",
-      "description": "Entity Framework Core (EF Core) is a lightweight, extensible, open-source, and cross-platform version of the popular Entity Framework data access technology."
+    "threejs": {
+      "icon": "TbBrandThreejs",
+      "description": "Three.js is a cross-browser JavaScript library and application programming interface used to create and display animated 3D computer graphics in a web browser."
     },
-    "dotnetcore": {
-      "icon": "<i className='fab fa-microsoft'></i>",
-      "description": ".NET Core is a cross-platform version of .NET, Microsoft's comprehensive and consistent programming model for building applications that have visually stunning user experiences."
+    "jquery": {
+      "icon": "DiJqueryLogo",
+      "description": "jQuery is a fast, small, and feature-rich JavaScript library. It makes things like HTML document traversal and manipulation, event handling, and animation much simpler."
     },
-    "signalr": {
-      "icon": "<i className='fas fa-satellite-dish'></i>",
-      "description": "SignalR is a free and open-source software library for Microsoft ASP.NET that allows server code to send asynchronous notifications to client-side web applications."
+    "typescript": {
+      "icon": "DiJavascript1",
+      "description": "TypeScript is a typed superset of JavaScript that compiles to plain JavaScript."
     },
-    "angularmaterial": {
-      "icon": "<i className='fab fa-angular'></i>",
-      "description": "Angular Material is a UI component library for Angular developers. It provides a rich set of high-quality native components out of the box."
+    "javascript": {
+      "icon": "DiJavascript1",
+      "description": "JavaScript is a versatile language that powers the web, allowing developers to build interactive websites."
     },
-    "django": {
-      "icon": "<i className='fab fa-python'></i>",
-      "description": "Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design."
+    "aws": {
+      "icon": "DiAws",
+      "description": "Amazon Web Services (AWS) is a subsidiary of Amazon providing on-demand cloud computing platforms and APIs to individuals, companies, and governments."
     },
-    "php": {
-      "icon": "<i className='fab fa-php'></i>",
-      "description": "PHP is a popular general-purpose scripting language that is especially suited to web development."
+    "socketio": {
+      "icon": "SiSocketdotio",
+      "description": "Socket.IO is a JavaScript library that enables real-time, bidirectional, and event-based communication between web clients and servers."
     },
-    "dhtmlxgantt": {
-      "icon": "<i className='fas fa-chart-bar'></i>",
-      "description": "DHTMLX Gantt is a JavaScript/HTML5 Gantt chart library that allows you to implement project management applications on the web."
+    "jest": {
+      "icon": "SiJest",
+      "description": "Jest is a delightful JavaScript testing framework with a focus on simplicity and support for large web applications."
     }
   }
 }
