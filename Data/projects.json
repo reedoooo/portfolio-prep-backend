@@ -178,6 +178,10 @@
       "title": "Salmon Cookies",
       "startDate": "Jan 2023",
       "description": "A sales data website developed for a hypothetical client, built using the VueJS framework, Bootstrap 5, and Jest for testing.",
+      "images": [
+        "images/portfolio/salmon-cookies/salmon-cookies-1.png",
+        "images/portfolio/salmon-cookies/salmon-cookies-II"
+      ],
       "url": "https://salmon-cookies.netlify.app/",
       "readmeurl": "https://github.com/reedoooo/cookies-stand-fork#readme",
       "technologies": [
